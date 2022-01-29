@@ -8,7 +8,7 @@ idea
 
 dist
 db.sqlite3
-
+.env.dev
 venv
 env
 

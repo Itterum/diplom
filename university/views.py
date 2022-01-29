@@ -19,6 +19,7 @@ from .service import StudentFilter, DepartmentFilter, TeachersFilter, GroupsFilt
 class StudentViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = StudentFilter
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         students = Students.objects.all()

@@ -37,22 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
     'ckeditor',
     'ckeditor_uploader',
-    'djoser',
-
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
-
+    # 'oauth2_provider',
+    # 'social_django',
+    # 'rest_framework_social_oauth2',
     'drf_yasg',
     'django_filters',
     'corsheaders',
     # 'movies',
-    'university',
+    # 'university',
+    # 'unit_group',
+    'profiles',
+
+    # 'rest_auth',
+    # 'rest_auth.registration',
+    "rest_framework",
+    "rest_framework.authtoken",
+    "djoser",
 ]
+
+AUTH_USER_MODEL = 'profiles.Profile'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -283,7 +288,12 @@ DJOSER = {
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
-    'SERIALIZERS': {},
+    'SERIALIZERS': {
+        # 'user': 'profiles.serializers.UserSerializer',
+        # 'user_create': 'backend.accounts.serializers.UserCreateSerializer',
+        # 'user': 'backend.accounts.serializers.UserCreateSerializer',
+        # 'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
 }
 
 SIMPLE_JWT = {

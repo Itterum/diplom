@@ -7,7 +7,8 @@ from shortuuid.django_fields import ShortUUIDField
 
 class Teachers(models.Model):
     '''преподаватель'''
-    id = ShortUUIDField(primary_key=True, prefix='N', length=10, editable=False)
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+
     full_name = models.CharField('ФИО', max_length=150)
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
@@ -30,7 +31,8 @@ class Teachers(models.Model):
 
 
 class Department(models.Model):
-    id = ShortUUIDField(primary_key=True, prefix='N', length=10, editable=False)
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+
     name = models.CharField('Название кафедры', max_length=150)
     email = models.CharField('Почта', max_length=50)
     phone_number = models.CharField('Номер телефона', max_length=50)
@@ -57,7 +59,9 @@ class Students(models.Model):
     #     ('FT', 'Очное'),
     #     ('PT', 'Заочное'),
     # )
-    id = ShortUUIDField(primary_key=True, prefix='N', length=10, editable=False)
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+
+
     full_name = models.CharField('ФИО', max_length=150)
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
@@ -85,7 +89,8 @@ class Students(models.Model):
 
 
 class Groups(models.Model):
-    id = ShortUUIDField(primary_key=True, prefix='N', length=10, editable=False)
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+
     group_number = models.CharField('Номер группы', max_length=150)
     number_of_students = models.CharField('Количество студентов', max_length=50)
     headman = models.ForeignKey(
