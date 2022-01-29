@@ -13,17 +13,23 @@ from .managers import CustomUserManager
 
 
 class Profile(AbstractUser):
-    MALE = 'M'
-    FEMALE = 'F'
-    NOT_SPECIFIED = 'NS'
+    MALE = 'male'
+    FEMALE = 'female'
+    NOT_SPECIFIED = 'none'
     GENDER = (
-        ('M', 'Мужской'), ('F', 'Женский'), ('NS', 'Не указан')
+        ('male', 'Мужской'), ('female', 'Женский'), ('none', 'Не указан')
     )
 
-    FULL_TIME = 'FT'
-    PART_TIME = 'PT'
+    FULL_TIME = 'full_time'
+    PART_TIME = 'part_time'
     EDUC_TYPE = (
-        ('FT', 'Очная'), ('PT', 'Заочная'), ('NS', 'Не указано')
+        ('full_time', 'Очная'), ('part_time', 'Заочная'), ('none', 'Не указано')
+    )
+
+    STUDENT = 'student'
+    TEACHER = 'teacher'
+    USER_TYPE = (
+        ('student', 'Студент'), ('teacher', 'Преподаватель'), ('none', 'Не указано')
     )
 
     id = ShortUUIDField(
@@ -40,8 +46,11 @@ class Profile(AbstractUser):
     phone_number = models.CharField('Номер телефона', max_length=50)
     address = models.CharField('Адрес', max_length=100)
     photo = models.ImageField('Фотография', upload_to='users/', blank=True)
-    is_student = models.BooleanField('Студент', default=False)
-    is_teacher = models.BooleanField('Преподаватель', default=False)
+    # is_student = models.BooleanField('Студент', default=False)
+    # is_teacher = models.BooleanField('Преподаватель', default=False)
+    user_type = models.CharField(
+        'Тип пользователя', max_length=10, choices=USER_TYPE, default=NOT_SPECIFIED, blank=True, null=True
+    )
 
     #поля для студентов
     group_number = models.CharField('Номер группы', max_length=20, blank=True, null=True)

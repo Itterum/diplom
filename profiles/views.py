@@ -34,7 +34,15 @@ class TokenObtainView(ObtainAuthToken):
                 'address': user.address,
                 'photo': f'/media/{str(user.photo)}',
                 'email': user.email,
-                'active': user.is_active
+                'is_active': user.is_active,
+                'user_type': user.user_type,
+                'is_superuser': user.is_superuser,
+                'group_number': user.group_number,
+                'course_number': user.course_number,
+                'phone_number_parents': user.phone_number_parents,
+                'educ_type': user.educ_type,
+                'position': user.position,
+                'qualification': user.qualification
             }
         }
         return JsonResponse(custom_response)

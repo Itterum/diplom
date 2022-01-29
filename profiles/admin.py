@@ -17,10 +17,10 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = add_form.add_fieldsets
 
     list_display = (
-        'password', 'full_name', 'first_name', 'last_name',
-        'gender', 'email', 'birth_date', 'phone_number', 'is_student', 'is_teacher',
+        'username', 'password', 'full_name', 'first_name', 'last_name',
+        'gender', 'email', 'birth_date', 'phone_number', 'user_type',
         'address', 'photo', 'is_active', 'is_superuser', 'group_number', 'course_number',
-        'course_number', 'phone_number_parents', 'educ_type', 'position', 'qualification'
+        'phone_number_parents', 'educ_type', 'position', 'qualification'
     )
     list_filter = (
         'full_name', 'gender', 'email', 'phone_number', 'address', 'is_active', 'is_superuser'
