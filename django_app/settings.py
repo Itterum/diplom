@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # 'university',
     # 'unit_group',
     'profiles',
+    'departments',
+    'news',
 
     # 'rest_auth',
     # 'rest_auth.registration',
