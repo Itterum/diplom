@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import News
+from .models import Discipline
 
 
-class NewsListSerializer(serializers.ModelSerializer):
+class DisciplinesListSerializer(serializers.ModelSerializer):
     """Вывод списка актеров и режиссеров"""
 
     class Meta:
-        model = News
+        model = Discipline
         fields = "__all__"

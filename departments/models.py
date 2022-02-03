@@ -12,10 +12,11 @@ class Department(models.Model):
     manager_department = models.OneToOneField(
         'profiles.Profile',
         related_name='manager_department',
-        on_delete=models.SET_NULL, null=True
+        verbose_name="Заведущий кафедры",
+        on_delete=models.SET_NULL, null=True, blank=True
     )
     description = models.TextField('Описание')
-    photo = models.ImageField('Фотография', upload_to='department/', blank=True)
+    photo = models.ImageField('Фотография', upload_to='department/')
     photos = models.ImageField('Фотографии', upload_to='department/', blank=True)
 
     def __str__(self):

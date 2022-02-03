@@ -37,12 +37,12 @@ class TokenObtainView(ObtainAuthToken):
                 'is_active': user.is_active,
                 'user_type': user.user_type,
                 'is_superuser': user.is_superuser,
-                'group_number': user.group_number,
-                'course_number': user.course_number,
                 'phone_number_parents': user.phone_number_parents,
                 'educ_type': user.educ_type,
                 'position': user.position,
-                'qualification': user.qualification
+                'qualification': user.qualification,
+                'department': user.department,
+                'group': user.group
             }
         }
         return JsonResponse(custom_response)

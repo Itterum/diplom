@@ -39,24 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
-    # 'oauth2_provider',
-    # 'social_django',
-    # 'rest_framework_social_oauth2',
     'drf_yasg',
     'django_filters',
     'corsheaders',
-    # 'movies',
-    # 'university',
-    # 'unit_group',
-    'profiles',
-    'departments',
-    'news',
-
-    # 'rest_auth',
-    # 'rest_auth.registration',
     "rest_framework",
     "rest_framework.authtoken",
     "djoser",
+
+    'profiles',
+    'departments',
+    'news',
+    'speciality',
+    'disciplines',
+    'groups',
 ]
 
 AUTH_USER_MODEL = 'profiles.Profile'

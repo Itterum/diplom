@@ -10,8 +10,8 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = (
-            'username', 'password', 'full_name', 'first_name', 'last_name',
+            'username','department', 'password', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number', 'user_type',
-            'address', 'photo', 'is_active', 'is_superuser', 'group_number', 'course_number',
-            'phone_number_parents', 'educ_type', 'position', 'qualification'
+            'address', 'photo', 'is_active', 'is_superuser', 'group',
+            'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
