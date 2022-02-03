@@ -9,8 +9,9 @@ class News(models.Model):
     name = models.CharField("Имя новости", max_length=150)
     description = models.TextField("Описание")
     department = models.ForeignKey('departments.Department', on_delete=models.CASCADE, blank=True, null=True)
-    photo = models.ImageField('Фотография', upload_to='department/', blank=True)
-    photos = models.ImageField('Фотографии', upload_to='department/', blank=True)
+    photo = models.ImageField('Фотография', upload_to='department/')
+    photos = models.ImageField('Фотографии', upload_to='department/', blank=True,null=True)
+    date = models.DateField('Дата рождения')
 
     def __str__(self):
         return self.name

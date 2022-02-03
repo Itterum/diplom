@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'news',
     'speciality',
     'disciplines',
+    'groups',
 ]
 
 AUTH_USER_MODEL = 'profiles.Profile'

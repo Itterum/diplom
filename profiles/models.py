@@ -1,15 +1,10 @@
 import uuid
-from datetime import date
-
 from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 
-from django.contrib.auth.models import User, AbstractUser
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
+
 from django.conf import settings
-import departments.models
-from .managers import CustomUserManager
 
 
 class Profile(AbstractUser):
@@ -49,19 +44,18 @@ class Profile(AbstractUser):
     user_type = models.CharField(
         'Тип пользователя', max_length=10, choices=USER_TYPE, default=NOT_SPECIFIED, blank=True, null=True
     )
-    department = models.ForeignKey('departments.Department',on_delete=models.CASCADE, blank=True, null=True)
-    group = models.ForeignKey('profiles.Profile',verbose_name='Headmen', on_delete=models.CASCADE, blank=True, null=True)
+    department = models.ForeignKey('departments.Department',
+                                   on_delete=models.CASCADE, blank=True, null=True)
+    group = models.ForeignKey('groups.Group', verbose_name='Group', related_name='group',
+                              on_delete=models.CASCADE, blank=True, null=True)
 
-    #поля для студентов
-    group_number = models.CharField('Номер группы', max_length=20, blank=True, null=True)
-    course_number = models.CharField('Номер курса', max_length=10, blank=True, null=True)
-    headman = models.BooleanField('Староста', default=False, blank=True, null=True)
+    # поля для студентов
     phone_number_parents = models.CharField('Контактный телефон родителей', max_length=50, blank=True, null=True)
     educ_type = models.CharField(
         'Форма обучения', max_length=10, choices=EDUC_TYPE, default=NOT_SPECIFIED, blank=True, null=True
     )
 
-    #поля преподаветелей
+    # поля преподаветелей
     teacher = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
     )

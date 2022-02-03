@@ -7,7 +7,9 @@ import departments.models
 class Speciality(models.Model):
     """Специальности"""
     name = models.CharField("имя специальность", max_length=150)
-    department = models.ForeignKey('departments.Department', on_delete=models.CASCADE,blank=True,null=True)
+    department = models.ForeignKey('departments.Department', verbose_name="Кафедра", on_delete=models.CASCADE,
+                                   blank=True, null=True)
+    education_time = models.CharField('Время обучения', max_length=150)
 
     def __str__(self):
         return self.name

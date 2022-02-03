@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import News
+from .models import Group
 
 
-class NewsListSerializer(serializers.ModelSerializer):
+class GroupsListSerializer(serializers.ModelSerializer):
     """Вывод списка актеров и режиссеров"""
 
     class Meta:
-        model = News
+        model = Group
         fields = "__all__"

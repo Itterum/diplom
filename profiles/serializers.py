@@ -12,6 +12,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'username','department', 'password', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number', 'user_type',
-            'address', 'photo', 'is_active', 'is_superuser', 'group_number', 'course_number',
+            'address', 'photo', 'is_active', 'is_superuser', 'group',
             'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
