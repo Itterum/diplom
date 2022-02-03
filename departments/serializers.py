@@ -3,7 +3,15 @@ from .models import Department
 from news.models import News
 from profiles.models import Profile
 from news.serializers import NewsListSerializer
-from profiles.serializers import ProfileSerializer
+
+
+def get_news(obj):
+    return NewsListSerializer(News.objects.filter(department=obj), many=True).data
+
+
+def get_teachers(obj):
+    return NewsListSerializer(Profile.objects.filter(teacher='teacher'), many=True).data
+
 
 class DepartmentsListSerializer(serializers.ModelSerializer):
     """Вывод списка актеров и режиссеров"""
@@ -13,12 +21,6 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
-        fields = ("id","name","email","phone_number","address","manager_department","description","photo","photos","news","teachers","department")
-
-    def get_news(self,obj):
-        return NewsListSerializer(News.objects.filter(department = obj),many=True).data
-
-    def get_teachers(self,obj):
-        teachers = Profile.objects.filter(user_type = 'teacher')
-        return ProfileSerializer(teachers.filter(department = obj),many=True).data
-
+        fields = (
+            "id", "name", "email", "phone_number", "address", "manager_department", "description", "photo", "photos",
+            "news", "teachers")

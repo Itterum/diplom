@@ -42,7 +42,8 @@ class TokenObtainView(ObtainAuthToken):
                 'phone_number_parents': user.phone_number_parents,
                 'educ_type': user.educ_type,
                 'position': user.position,
-                'qualification': user.qualification
+                'qualification': user.qualification,
+                'department': user.department
             }
         }
         return JsonResponse(custom_response)

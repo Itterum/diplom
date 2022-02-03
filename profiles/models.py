@@ -8,7 +8,7 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-
+import departments.models
 from .managers import CustomUserManager
 
 
@@ -46,11 +46,11 @@ class Profile(AbstractUser):
     phone_number = models.CharField('Номер телефона', max_length=50)
     address = models.CharField('Адрес', max_length=100)
     photo = models.ImageField('Фотография', upload_to='users/', blank=True)
-    # is_student = models.BooleanField('Студент', default=False)
-    # is_teacher = models.BooleanField('Преподаватель', default=False)
     user_type = models.CharField(
         'Тип пользователя', max_length=10, choices=USER_TYPE, default=NOT_SPECIFIED, blank=True, null=True
     )
+    department = models.ForeignKey('departments.Department',on_delete=models.CASCADE, blank=True, null=True)
+    group = models.ForeignKey('profiles.Profile',verbose_name='Headmen', on_delete=models.CASCADE, blank=True, null=True)
 
     #поля для студентов
     group_number = models.CharField('Номер группы', max_length=20, blank=True, null=True)

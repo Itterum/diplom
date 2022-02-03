@@ -1,8 +1,6 @@
 from django.db import models
-from datetime import date
-from django.urls import reverse
-import profiles.models
 import uuid
+
 
 class Department(models.Model):
     """Кафедры"""
@@ -17,8 +15,8 @@ class Department(models.Model):
         on_delete=models.SET_NULL, null=True
     )
     description = models.TextField('Описание')
-    photo = models.ImageField('Фотография', upload_to='department/',blank=True)
-    photos = models.ImageField('Фотографии', upload_to='department/',blank=True)
+    photo = models.ImageField('Фотография', upload_to='department/', blank=True)
+    photos = models.ImageField('Фотографии', upload_to='department/', blank=True)
 
     def __str__(self):
         return self.name
