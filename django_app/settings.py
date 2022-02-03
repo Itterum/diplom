@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     "djoser",
 
     'profiles',
+    'groups',
     'departments',
     'news',
     'speciality',
     'disciplines',
-    'groups',
 ]
 
 AUTH_USER_MODEL = 'profiles.Profile'
