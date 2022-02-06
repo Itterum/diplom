@@ -5,6 +5,6 @@ from .serializers import SpecialityListSerializer
 
 # Create your views here.
 class SpecialityViewSet(viewsets.ModelViewSet):
-    """Добавление рейтинга фильму"""
+    """Листинг специальностей"""
     serializer_class = SpecialityListSerializer
     queryset = Speciality.objects.all()

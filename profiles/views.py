@@ -1,17 +1,16 @@
 from .models import Profile
 
 from django.http import JsonResponse
-from rest_framework import mixins, viewsets, permissions
+from rest_framework import viewsets, permissions
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
 from profiles.permissions import (
-    IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
+    IsOwnerOrReadOnly
 )
 
 from profiles.serializers import ProfileSerializer
-# from .models import Student
 
 
 class TokenObtainView(ObtainAuthToken):
@@ -49,6 +48,7 @@ class TokenObtainView(ObtainAuthToken):
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
+    """Листинг профилей"""
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,

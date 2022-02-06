@@ -5,6 +5,6 @@ from .serializers import GroupsListSerializer
 
 # Create your views here.
 class GroupsViewSet(viewsets.ModelViewSet):
-    """Добавление рейтинга фильму"""
+    """Листинг групп"""
     serializer_class = GroupsListSerializer
     queryset = Group.objects.all()

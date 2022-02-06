@@ -16,6 +16,7 @@ class Department(models.Model):
         on_delete=models.SET_NULL, null=True, blank=True
     )
     description = models.TextField('Описание')
+    timetable_department = models.FileField('Рассписание', upload_to='timetable/', null=True, blank=True)
     photo = models.ImageField('Фотография', upload_to='department/')
     photos = models.ImageField('Фотографии', upload_to='department/', blank=True)
 

@@ -5,6 +5,6 @@ from .serializers import DisciplinesListSerializer
 
 # Create your views here.
 class DisciplinesViewSet(viewsets.ModelViewSet):
-    """Добавление рейтинга фильму"""
+    """Листинг дисциплин"""
     serializer_class = DisciplinesListSerializer
     queryset = Discipline.objects.all()

@@ -14,9 +14,9 @@ class Group(models.Model):
     headmen = models.ForeignKey('profiles.Profile', related_name='headmen', verbose_name='Староста',
                                 on_delete=models.CASCADE, blank=True,
                                 null=True)
-    # curator = models.ForeignKey('profiles.Profile', related_name='curator', verbose_name='Куратор',
-    #                             on_delete=models.CASCADE, blank=True,
-    #                             null=True)
+    curator = models.ForeignKey('profiles.Profile', related_name='curator', verbose_name='Куратор',
+                                on_delete=models.CASCADE, blank=True,
+                                null=True)
     start_date = models.DateField('Начало обучения')
 
     def __str__(self):
