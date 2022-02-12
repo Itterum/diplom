@@ -4,6 +4,7 @@ from speciality.views import SpecialityViewSet
 from news.views import NewsViewSet
 from disciplines.views import DisciplinesViewSet
 from groups.views import GroupsViewSet
+from timetable.views import TimetableViewSet
 from rest_framework import routers
 
 profilesRouter = routers.DefaultRouter()
@@ -23,3 +24,6 @@ disciplinesRouter.register('', DisciplinesViewSet)
 
 groupsRouter = routers.DefaultRouter()
 groupsRouter.register('', GroupsViewSet)
+
+timetableRouter = routers.DefaultRouter()
+timetableRouter.register('', TimetableViewSet)

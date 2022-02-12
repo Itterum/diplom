@@ -46,7 +46,7 @@ class Timetable(models.Model):
     id = ShortUUIDField(
         primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
     )
-    date = models.DateTimeField()
+    date = models.DateField('Дата')
     discipline = models.ForeignKey('disciplines.Discipline', related_name='Discipline', verbose_name='Дисциплина',
                              on_delete=models.CASCADE, blank=True,
                              null=True)

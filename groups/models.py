@@ -22,7 +22,7 @@ class Group(models.Model):
     start_date = models.DateField('Начало обучения')
 
     def __str__(self):
-        return self.name
+        return self.code
 
     class Meta:
         verbose_name = "Группа"

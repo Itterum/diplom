@@ -2,13 +2,18 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .models import Department
 import pandas as pd
+from timetable.models import Timetable
+from disciplines.models import Discipline
+from groups.models import Group
+from profiles.models import Profile
+from departments.models import Department
 
 
 def pars_xlsx_file(file):
 
     data = pd.read_excel(file)
 
-    print(data)
+    # print(data)
     res = data.to_string(header=False,
                                          index=False,
                                          index_names=False).split('\n')
@@ -21,6 +26,9 @@ def pars_xlsx_file(file):
         "day": "",
         "name": "",
         "teacher": "",
+        "discipline": "",
+        "department": "",
+        "group": "",
         "type": "",
         "visit": "",
     }
@@ -48,6 +56,15 @@ def pars_xlsx_file(file):
         if type_obj == 'teacher':
             day['teacher'] = value
 
+        if type_obj == 'discipline':
+            day['discipline'] = value
+
+        if type_obj == 'department':
+            day['department'] = value
+
+        if type_obj == 'group':
+            day['group'] = value
+
         if type_obj == 'type':
             day['type'] = value
 
@@ -63,7 +80,20 @@ def pars_xlsx_file(file):
 def my_callback(sender, instance: Department, **kwargs):
     fh = open(instance.timetable_department.path, mode='rb')
     test = pars_xlsx_file(fh)
-    print(test)
-    print(instance.timetable_department.path)
+    print(test.get('days'))
+
+
+    for el in test['days']:
+        print(el)
+        Timetable.objects.create(
+            date = el.get('day'),
+            para = el.get('name'),
+            visit = el.get('visit'),
+            type = el.get('type'),
+            discipline = Discipline.objects.get(id=el.get('name')),
+            teacher = Profile.objects.get(id=el.get('teacher')),
+            department = Department.objects.get(id=instance.id),
+            group = Group.objects.get(code=test.get('group_id')),
+        )
 
     print("Request finished!")

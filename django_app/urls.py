@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from .routers import profilesRouter, newsRouter, departmentsRouter, specialityRouter, disciplinesRouter, groupsRouter
+from .routers import profilesRouter, newsRouter, departmentsRouter, specialityRouter, disciplinesRouter, groupsRouter, timetableRouter
 
 from .yasg import urlpatterns as doc_urls
 
@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/v1/speciality/', include(specialityRouter.urls)),
     path('api/v1/disciplines/', include(disciplinesRouter.urls)),
     path('api/v1/groups/', include(groupsRouter.urls)),
+    path('api/v1/timetable/', include(timetableRouter.urls)),
 ]
 
 urlpatterns += doc_urls
