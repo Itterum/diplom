@@ -5,15 +5,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from .routers import profilesRouter, newsRouter, departmentsRouter, specialityRouter, disciplinesRouter,groupsRouter
+from .routers import profilesRouter, newsRouter, departmentsRouter, specialityRouter, disciplinesRouter, groupsRouter
 
 from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('api/ckeditor/', include('ckeditor_uploader.urls')),
-
     # пути для авторизация
     path("api/v1/", include("djoser.urls.base")),
     path('api/v1/auth/', include('profiles.urls')),

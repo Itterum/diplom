@@ -1,10 +1,12 @@
 from django.db import models
 import uuid
-
+from shortuuid.django_fields import ShortUUIDField
 
 class Group(models.Model):
     """Группы"""
-    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+    id = ShortUUIDField(
+        primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
+    )
     code = models.CharField('Код группы', max_length=150)
     email = models.CharField('Почта группы', max_length=50)
     phone_number = models.CharField('Номер телефона', max_length=50)

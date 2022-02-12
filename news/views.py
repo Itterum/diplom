@@ -11,7 +11,7 @@ from .serializers import (
 
 # Create your views here.
 class NewsViewSet(viewsets.ModelViewSet):
-    """Добавление рейтинга фильму"""
+    """Листинг новостей"""
     serializer_class = NewsListSerializer
     queryset = News.objects.all()
 
