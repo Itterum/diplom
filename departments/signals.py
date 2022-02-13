@@ -12,8 +12,6 @@ from departments.models import Department
 def pars_xlsx_file(file):
 
     data = pd.read_excel(file)
-
-    # print(data)
     res = data.to_string(header=False,
                                          index=False,
                                          index_names=False).split('\n')
@@ -38,40 +36,17 @@ def pars_xlsx_file(file):
         header = i.split(':')
         type_obj = header[0].strip()
         value = header[1].strip()
-        count = 0
 
         if type_obj == 'group':
             obj['group_id'] = value
 
-        if count == 0:
-            day = template_day
-
-        if type_obj == 'day':
-            count += 1
-            day['day'] = value
-
-        if type_obj == 'name':
-            day['name'] = value
-
-        if type_obj == 'teacher':
-            day['teacher'] = value
-
-        if type_obj == 'discipline':
-            day['discipline'] = value
-
-        if type_obj == 'department':
-            day['department'] = value
-
-        if type_obj == 'group':
-            day['group'] = value
-
-        if type_obj == 'type':
-            day['type'] = value
+        if type_obj in day:
+            day[type_obj] = value
 
         if type_obj == 'visit':
             day['visit'] = value
-            obj["days"].append(day)
-            count = 0
+            day_copy = day.copy()
+            obj["days"].append(day_copy)
 
     return obj
 
