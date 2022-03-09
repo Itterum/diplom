@@ -4,6 +4,13 @@ import uuid
 
 class Group(models.Model):
     """Группы"""
+
+    NOT_SPECIFIED = 'none'
+    VISITTYPE = (
+        ('remote', 'Удаленная'),
+        ('locale', 'Очная'),
+    )
+
     id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
     code = models.CharField('Код группы', max_length=150)
     email = models.CharField('Почта группы', max_length=50)
@@ -17,7 +24,9 @@ class Group(models.Model):
     curator = models.ForeignKey('profiles.Profile', related_name='curator', verbose_name='Куратор',
                                 on_delete=models.CASCADE, blank=True,
                                 null=True)
+    visit_type = models.CharField('Тип группы', max_length=10, choices=VISITTYPE, default=NOT_SPECIFIED)
     start_date = models.DateField('Начало обучения')
+    is_session = models.BooleanField('Началась ли сессия?', default=False)
 
     def __str__(self):
         return self.name
