@@ -42,7 +42,7 @@ class Profile(AbstractUser):
     email = models.EmailField('Почта', unique=True, blank=True, null=True)
     phone_number = models.CharField('Номер телефона', max_length=50, blank=True, null=True)
     address = models.CharField('Адрес', max_length=100, blank=True, null=True)
-    photo = models.ImageField('Фотография', upload_to='users/', blank=True, blank=True, null=True)
+    photo = models.ImageField('Фотография', upload_to='users/', blank=True, null=True)
     user_type = models.CharField(
         'Тип пользователя', max_length=10, choices=USER_TYPE, default=USER_TYPE[0][0], blank=True, null=True
     )
