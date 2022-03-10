@@ -25,7 +25,7 @@ class Group(models.Model):
     curator = models.ForeignKey('profiles.Profile', related_name='curator', verbose_name='Куратор',
                                 on_delete=models.CASCADE, blank=True,
                                 null=True)
-    visit_type = models.CharField('Тип группы', max_length=10, choices=VISITTYPE, default=NOT_SPECIFIED, blank=True, null=True)
+    visit_type = models.CharField('Тип группы', max_length=10, choices=VISITTYPE, default=VISITTYPE[1][0])
     start_date = models.DateField('Начало обучения')
     is_session = models.BooleanField('Началась ли сессия?', default=False)
 
