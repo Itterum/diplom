@@ -14,7 +14,9 @@ class Department(models.Model):
         'profiles.Profile',
         related_name='manager_department',
         verbose_name="Заведущий кафедры",
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
     description = models.TextField('Описание')
     basic_timetable_department = models.FileField('Основное рассписание', upload_to='timetable-d/')
