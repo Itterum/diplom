@@ -30,7 +30,7 @@ class Group(models.Model):
     is_session = models.BooleanField('Началась ли сессия?', default=False)
 
     def __str__(self):
-        return self.name
+        return self.code
 
     class Meta:
         verbose_name = "Группа"
