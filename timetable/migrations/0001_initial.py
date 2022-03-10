@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('disciplines', '0001_initial'),
-        ('departments', '0009_auto_20220310_0545'),
+        ('departments', '0005_auto_20220309_1521'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('groups', '0004_auto_20220309_1521'),
     ]

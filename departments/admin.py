@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Department
 
-# Register your models here.
-admin.site.register(Department)
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    readonly_fields=('id',)

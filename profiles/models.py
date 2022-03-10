@@ -30,11 +30,11 @@ class Profile(AbstractUser):
     id = ShortUUIDField(
         primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
     )
-    full_name = models.CharField('ФИО', max_length=150)
-    first_name = models.CharField('Имя', max_length=50)
-    last_name = models.CharField('Фамилия', max_length=50)
+    full_name = models.CharField('ФИО', max_length=150, blank=False, null=False)
+    first_name = models.CharField('Имя', max_length=50, blank=False, null=False)
+    last_name = models.CharField('Фамилия', max_length=50, blank=False, null=False)
     gender = models.CharField(
-        'Пол', max_length=10, choices=GENDER, default=NOT_SPECIFIED
+        'Пол', max_length=10, choices=GENDER, default=GENDER[0][0]
     )
     birth_date = models.DateField('Дата рождения', null=True, blank=True)
     email = models.EmailField('Почта', unique=True)
@@ -42,7 +42,7 @@ class Profile(AbstractUser):
     address = models.CharField('Адрес', max_length=100)
     photo = models.ImageField('Фотография', upload_to='users/', blank=True)
     user_type = models.CharField(
-        'Тип пользователя', max_length=10, choices=USER_TYPE, default=NOT_SPECIFIED, blank=True, null=True
+        'Тип пользователя', max_length=10, choices=USER_TYPE, default=USER_TYPE[0][0], blank=True, null=True
     )
     department = models.ForeignKey('departments.Department',
                                    on_delete=models.CASCADE, blank=True, null=True)
