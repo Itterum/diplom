@@ -3,9 +3,8 @@ from django.db import models
 
 class Discipline(models.Model):
     """дисциплины"""
-    name = models.CharField("Имя дисциплины", max_length=150)
-    department = models.ForeignKey('departments.Department', verbose_name='Кафедра', on_delete=models.CASCADE,
-                                   blank=True, null=True)
+    name = models.CharField("Имя дисциплины", max_length=150, unique=True)
+    department = models.ForeignKey('departments.Department', verbose_name='Кафедра', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -1,11 +1,12 @@
 from django.db import models
-import uuid
+
+from utils.model_utils import generate_id
 
 
 class Department(models.Model):
     """Кафедры"""
-    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
-    name = models.CharField('Название кафедры', max_length=150)
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=generate_id)
+    name = models.CharField('Название кафедры', max_length=150, blank=False, null=False)
     email = models.CharField('Почта', max_length=50)
     phone_number = models.CharField('Номер телефона', max_length=50)
     address = models.CharField('Адрес', max_length=100)

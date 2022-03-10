@@ -1,10 +1,11 @@
-import uuid
 from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 
 from django.contrib.auth.models import AbstractUser
 
 from django.conf import settings
+
+from utils.model_utils import generate_id
 
 
 class Profile(AbstractUser):
@@ -28,7 +29,7 @@ class Profile(AbstractUser):
     )
 
     id = ShortUUIDField(
-        primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
+        primary_key=True, length=10, unique=True, default=generate_id, editable=False
     )
     full_name = models.CharField('ФИО', max_length=150, blank=False, null=False)
     first_name = models.CharField('Имя', max_length=50, blank=False, null=False)

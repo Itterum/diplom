@@ -1,5 +1,6 @@
 from django.db import models
-import uuid
+
+from utils.model_utils import generate_id
 
 
 class Group(models.Model):
@@ -11,7 +12,7 @@ class Group(models.Model):
         ('locale', 'Очная'),
     )
 
-    id = models.CharField(primary_key=True, max_length=10, unique=True, default=uuid.uuid4().hex[:10])
+    id = models.CharField(primary_key=True, max_length=10, unique=True, default=generate_id)
     code = models.CharField('Код группы', max_length=150)
     email = models.CharField('Почта группы', max_length=50)
     phone_number = models.CharField('Номер телефона', max_length=50)
