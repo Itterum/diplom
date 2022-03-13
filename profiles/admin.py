@@ -17,16 +17,13 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = add_form.add_fieldsets
 
     list_display = (
-        'username', 'password', 'full_name', 'first_name', 'last_name',
-        'gender', 'email', 'birth_date', 'phone_number', 'user_type',
-        'address', 'photo', 'is_active', 'is_superuser', 'group',
-        'phone_number_parents', 'educ_type', 'position', 'qualification'
+        'username', 'full_name', 'user_type'
     )
     list_filter = (
-        'full_name', 'gender', 'email', 'phone_number', 'address', 'is_active', 'is_superuser'
+        'user_type', 'gender'
     )
     search_fields = (
-        'full_name', 'gender', 'email', 'phone_number', 'address'
+        'full_name', 'email', 'phone_number', 'address'
     )
 
     # ordering = ('email',)

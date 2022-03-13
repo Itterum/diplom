@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'corsheaders',
-    "rest_framework",
-    "rest_framework.authtoken",
-    "djoser",
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'ajax_select',
 
     'profiles',
     'groups',
