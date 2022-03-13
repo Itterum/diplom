@@ -42,4 +42,5 @@ pgdata
 # !**/migrations
 # !**/migrations/__init__.py
 
-
+# dumps
+db.json

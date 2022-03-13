@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
+    'drf_yasg',
+    'django_filters',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'ajax_select',
 
     'profiles',
     'groups',
@@ -45,12 +54,6 @@ INSTALLED_APPS = [
     'speciality',
     'disciplines',
     'timetable',
-
-    'drf_yasg',
-    'corsheaders',
-    'rest_framework',
-    "rest_framework.authtoken",
-    "djoser",
 ]
 
 AUTH_USER_MODEL = 'profiles.Profile'
