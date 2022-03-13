@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 from shortuuid.django_fields import ShortUUIDField
 
 from django.contrib.auth.models import AbstractUser
@@ -39,7 +40,7 @@ class Profile(AbstractUser):
         blank=True, null=True
     )
     birth_date = models.DateField('Дата рождения', null=True, blank=True)
-    email = models.EmailField('Почта', unique=True, blank=True, null=True)
+    email = models.EmailField('Почта', blank=True, null=True)
     phone_number = models.CharField('Номер телефона', max_length=50, blank=True, null=True)
     address = models.CharField('Адрес', max_length=100, blank=True, null=True)
     photo = models.ImageField('Фотография', upload_to='users/', blank=True, null=True)
@@ -63,6 +64,15 @@ class Profile(AbstractUser):
     )
     position = models.CharField('Должность', max_length=50, blank=True, null=True)
     qualification = models.CharField('Квалификация', max_length=50, blank=True, null=True)
+
+    def clean(self) -> None:
+        subject = self.email
+
+        if self.email != "":
+            if Profile.objects.filter(email__iexact=subject).exists():
+                raise ValidationError({'email': 'This field must be unique'})
+
+        return super().clean()
 
     def __str__(self):
         return f'{self.username}'
