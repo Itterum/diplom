@@ -1,7 +1,6 @@
 from django.db import models
 from django.forms import ValidationError
 from shortuuid.django_fields import ShortUUIDField
-
 from django.contrib.auth.models import AbstractUser
 
 from django.conf import settings
@@ -22,7 +21,6 @@ class Profile(AbstractUser):
     EDUC_TYPE = (
         ('full_time', 'Очная'), ('part_time', 'Заочная'), ('none', 'Не указано')
     )
-
     STUDENT = 'student'
     TEACHER = 'teacher'
     USER_TYPE = (
@@ -57,6 +55,8 @@ class Profile(AbstractUser):
     educ_type = models.CharField(
         'Форма обучения', max_length=10, choices=EDUC_TYPE, default=NOT_SPECIFIED, blank=True, null=True
     )
+
+    # test_field_usr = models.CharField('Контактный телефон родителей', max_length=50, blank=True, null=True)
 
     # поля преподаветелей
     teacher = models.OneToOneField(
