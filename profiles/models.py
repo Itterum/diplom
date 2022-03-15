@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Q
+
 from django.forms import ValidationError
 from shortuuid.django_fields import ShortUUIDField
 from django.contrib.auth.models import AbstractUser
@@ -69,7 +71,7 @@ class Profile(AbstractUser):
         subject = self.email
 
         if self.email != "":
-            if Profile.objects.filter(email__iexact=subject).exists():
+            if Profile.objects.filter(~Q(id=self.id), email__iexact=subject).exists():
                 raise ValidationError({'email': 'This field must be unique'})
 
         return super().clean()
