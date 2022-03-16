@@ -44,3 +44,4 @@ pgdata
 
 # dumps
 db.json
+.vscode

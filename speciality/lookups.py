@@ -8,4 +8,7 @@ class SpecialityLookup(LookupChannel):
     model = Speciality
 
     def get_query(self, q, request):
-        return self.model.objects.filter(name__icontains=q).order_by('name')
+        return self.model.objects.filter(name__icontains=q)
+
+    def get_objects(self, ids):
+        return Speciality.objects.filter(pk__in=ids)

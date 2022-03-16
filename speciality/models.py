@@ -1,14 +1,12 @@
 from django.db import models
-from datetime import date
-from django.urls import reverse
-import departments.models
 from shortuuid.django_fields import ShortUUIDField
-import uuid
+
+from utils.model_utils import generate_id
 
 class Speciality(models.Model):
     """Специальности"""
     id = ShortUUIDField(
-        primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
+        primary_key=True, length=10, unique=True, default=generate_id, editable=False
     )
     name = models.CharField("имя специальность", max_length=150)
     department = models.ForeignKey('departments.Department', verbose_name="Кафедра", on_delete=models.CASCADE,
