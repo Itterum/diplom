@@ -4,5 +4,5 @@ from .models import Department
 
 
 @receiver(post_save, sender=Department)
-def my_callback(sender, **kwargs):
-    print("Request finished!")
+def add_timetable(sender, instance, created, **kwargs):
+    ...
