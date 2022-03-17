@@ -1,4 +1,5 @@
 from django.dispatch import receiver
+from django.db import transaction
 from django.db.models.signals import post_save
 
 from timetable.serializers import TimetableListSerializer
@@ -34,6 +35,7 @@ def add_timetable(sender, instance: Department, created, **kwargs):
         parsing(instance.basic_timetable_department)
 
 
+@transaction.atomic
 def parsing(path: str):
     parser = ParseXlsx(path)
     data = parser.parse(to_dict=True)
