@@ -1,14 +1,15 @@
 import re
 
 from openpyxl import load_workbook
-from dataclasses import dataclass, field
-from typing import List
+from dataclasses import dataclass, field, asdict
+from typing import List, Union
 
 from openpyxl.worksheet.worksheet import Worksheet
 
 
 @dataclass
 class TemplateDay:
+    group: str = ""
     date: str = ""
     teacher: str = ""
     discipline: str = ""
@@ -17,12 +18,6 @@ class TemplateDay:
     visit: str = ""
     para: str = ""
     session: bool = None
-
-
-@dataclass
-class TemplateGroup:
-    group_id: int = 0
-    days: List[TemplateDay] = field(default_factory=list)
 
 
 class ParseXlsx:
@@ -34,22 +29,24 @@ class ParseXlsx:
     def open_file(self) -> None:
         self.worksheet = load_workbook(self.path).active
 
-    def parse(self) -> list[TemplateGroup]:
+    def parse(self, to_dict: bool = False) -> Union[List[TemplateDay], dict]:
         self.open_file()
-        table = self._parse_column()
+        table = self._parse_column(to_dict=to_dict)
         return table
 
-    def _parse_column(self) -> list:
+    def _parse_column(self, to_dict: bool = False) -> List:
         table = []
         for col in self.worksheet.columns:
             for item in self._parse_cell(col):
+                if to_dict:
+                    item = asdict(item)
                 table.append(item)
         return table
 
-    def _parse_cell(self, col) -> list:
-        group = TemplateGroup()
+    def _parse_cell(self, col) -> List:
         day = TemplateDay()
         date = None
+        group = 0
         for cell in col:
             if cell.value is None:
                 continue
@@ -57,29 +54,31 @@ class ParseXlsx:
             data = self.get_data_cell(cell)
 
             if data[0] == "para":
-                if day.para != '':
-                    group.days.append(day)
+                if day.group != "" and day.para != "":
+                    yield day
                     day = TemplateDay()
+                day.group = group
+                day.para = data[1]
+                day.date = date
 
             if data[0] == "group":
-                if group.group_id != 0:
-                    yield group
-                    group = TemplateGroup()
-                group.group_id = data[1]
+                group = data[1]
 
             if data[0] == "date":
                 date = data[1]
 
-            setattr(day, *self.handler_data(data, date, day))
+            setattr(day, *self.handler_data(data, date, group, day))
         else:
-            if group.group_id != 0:
-                yield group
+            if day.group != "" and day.para != "":
+                yield day
 
-    def handler_data(self, data: list, date: str, day: TemplateDay) -> tuple:
+    def handler_data(self, data: list, date: str, group: str, day: TemplateDay) -> tuple:
         if getattr(day, "date", False) == "":
             return "date", date
+        if getattr(day, "group", False) == "":
+            return "group", group
         return data[0], data[1]
 
     @staticmethod
-    def get_data_cell(cell) -> list:
+    def get_data_cell(cell) -> List:
         return re.split(r":\s", cell.value)
