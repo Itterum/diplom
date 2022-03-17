@@ -1,16 +1,15 @@
-"""django_app URL Configuration
-"""
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from .routers import (profilesRouter, 
-    newsRouter, 
-    departmentsRouter, 
-    specialityRouter, 
-    disciplinesRouter, 
-    groupsRouter, 
+from .routers import (
+    profilesRouter,
+    newsRouter,
+    departmentsRouter,
+    specialityRouter,
+    disciplinesRouter,
+    groupsRouter,
     timetableRouter
 )
 
