@@ -1,15 +1,15 @@
-from django.urls import path, re_path
-from rest_framework.routers import DefaultRouter
-from rest_framework.urlpatterns import format_suffix_patterns
+from django.urls import path
+
+from rest_framework_jwt.views import obtain_jwt_token
 
 from . import views
 
 # router = DefaultRouter()
 # router.register('profiles', views.ProfileViewSet)
 
-urlpatterns = format_suffix_patterns([
+urlpatterns = [
     #auth
-    path('token/', views.TokenObtainView.as_view(), name='new-token,obtain-view'),
+    path('token-create/', obtain_jwt_token, name='obtain_jwt_token'),
 
     # path('users/', views.UserViewSet.as_view({'get': 'list'})),
     # path('profiles/', views.ProfileViewSet.as_view({'get': 'list'})),
@@ -17,4 +17,4 @@ urlpatterns = format_suffix_patterns([
     # path('profiles/', )
     # path('students/', views.StudentViewSet.as_view({'get': 'list'})),
     # path('students/<pk>/', views.StudentViewSet.as_view({'get': 'retrieve'}))
-])
+]
