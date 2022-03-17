@@ -6,7 +6,7 @@ from profiles.serializers import ProfileSerializer
 
 
 class DepartmentsListSerializer(serializers.ModelSerializer):
-    """Вывод списка актеров и режиссеров"""
+    """Вывод кафедры"""
 
     news = serializers.SerializerMethodField()
     manager_department = ProfileSerializer()

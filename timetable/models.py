@@ -49,17 +49,17 @@ class Timetable(models.Model):
     )
     date = models.DateField('Дата')
     discipline = models.ForeignKey('disciplines.Discipline', related_name='Discipline', verbose_name='Дисциплина',
-                             on_delete=models.CASCADE, blank=True,
-                             null=True)
+                                   on_delete=models.CASCADE, blank=True,
+                                   null=True, to_field='id')
     teacher = models.ForeignKey('profiles.Profile', related_name='Profile', verbose_name='Преподаватель',
-                             on_delete=models.CASCADE, blank=True,
-                             null=True)
+                                on_delete=models.CASCADE, blank=True,
+                                null=True, to_field='id')
     department = models.ForeignKey('departments.Department', related_name='Department', verbose_name='Кафедра',
-                             on_delete=models.CASCADE, blank=True,
-                             null=True)
+                                   on_delete=models.CASCADE, blank=True,
+                                   null=True, to_field='id')
     group = models.ForeignKey('groups.Group', related_name='Group', verbose_name='Группа',
-                             on_delete=models.CASCADE, blank=True,
-                             null=True)
+                              on_delete=models.CASCADE, blank=True,
+                              null=True, to_field='id')
     session = models.BooleanField('Сессия', default=False)
 
     def __str__(self):
