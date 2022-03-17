@@ -7,4 +7,5 @@ class TimetableListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Timetable
-        fields = "__all__"
+        fields = ('para', 'visit', 'type', 'id', 'date', 'discipline',
+                  'teacher', 'department', 'group', 'session')

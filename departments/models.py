@@ -43,7 +43,7 @@ class Department(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if self.pk:
+        if self._state.adding is False:
             cls = self.__class__
             old = cls.objects.get(pk=self.pk)
             new = self

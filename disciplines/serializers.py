@@ -3,7 +3,7 @@ from .models import Discipline
 
 
 class DisciplinesListSerializer(serializers.ModelSerializer):
-    """Вывод списка актеров и режиссеров"""
+    """Вывод дисциплин"""
 
     class Meta:
         model = Discipline

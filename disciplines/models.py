@@ -1,6 +1,5 @@
 from django.db import models
-import uuid
-from shortuuid.django_fields import ShortUUIDField
+
 
 class Discipline(models.Model):
     """Дисциплины"""
