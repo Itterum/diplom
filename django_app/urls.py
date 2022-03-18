@@ -3,8 +3,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework_jwt.views import obtain_jwt_token
+
+from .yasg import urlpatterns as doc_urls
+
+from ajax_select import urls as ajax_select_urls
+
 from .routers import (
-    profilesRouter,
     newsRouter,
     departmentsRouter,
     specialityRouter,
@@ -13,10 +18,6 @@ from .routers import (
     timetableRouter
 )
 
-from .yasg import urlpatterns as doc_urls
-
-from ajax_select import urls as ajax_select_urls
-
 
 urlpatterns = [
 
@@ -24,11 +25,12 @@ urlpatterns = [
     path('api/ckeditor/', include('ckeditor_uploader.urls')),
     path('ajax_select/', include(ajax_select_urls)),
 
-    # пути для авторизация
-    path("api/v1/", include("djoser.urls.base")),
-    path('api/v1/auth/', include('profiles.urls')),
+    # authorization
+    path('api/v1/', include("djoser.urls.base")),
+    path('api/v1/auth/token-create/', obtain_jwt_token, name='obtain_jwt_token'),
 
-    path('api/v1/profiles/', include(profilesRouter.urls)),
+    path('api/v1/profiles/', include('profiles.urls')),
+
     path('api/v1/news/', include(newsRouter.urls)),
     path('api/v1/departments/', include(departmentsRouter.urls)),
     path('api/v1/speciality/', include(specialityRouter.urls)),

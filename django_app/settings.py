@@ -262,12 +262,7 @@ DJOSER = {
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
-    'SERIALIZERS': {
-        # 'user': 'profiles.serializers.UserSerializer',
-        # 'user_create': 'backend.accounts.serializers.UserCreateSerializer',
-        # 'user': 'backend.accounts.serializers.UserCreateSerializer',
-        # 'user_delete': 'djoser.serializers.UserDeleteSerializer',
-    },
+    'SERIALIZERS': {},
 }
 
 # SMTP
