@@ -26,11 +26,6 @@ class CustomUserAdmin(UserAdmin):
         'full_name', 'email', 'phone_number', 'address'
     )
 
-    # ordering = ('email',)
-
 
 admin.site.register(Profile, CustomUserAdmin)
-# don't show groups
-# admin.site.register(TeacherGroup)
-# admin.site.register(Student)
 admin.site.unregister(Group)
