@@ -3,7 +3,6 @@ from .models import Discipline
 from .serializers import DisciplinesListSerializer
 
 
-# Create your views here.
 class DisciplinesViewSet(viewsets.ModelViewSet):
     """Листинг дисциплин"""
     serializer_class = DisciplinesListSerializer
