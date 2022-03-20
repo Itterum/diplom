@@ -12,3 +12,15 @@ class ProfileSerializer(serializers.ModelSerializer):
             'address', 'photo', 'group',
             'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
+        extra_kwargs = {
+            'id': {'read_only': True},
+            'username': {'read_only': True},
+            'department': {'read_only': True},
+            'full_name': {'read_only': True},
+            'first_name': {'read_only': True},
+            'last_name': {'read_only': True},
+            'gender': {'read_only': True},
+            'birth_date': {'read_only': True},
+            'user_type': {'read_only': True},
+            'group': {'read_only': True},
+        }
