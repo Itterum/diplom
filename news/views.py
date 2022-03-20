@@ -9,7 +9,6 @@ from .serializers import (
 )
 
 
-# Create your views here.
 class NewsViewSet(viewsets.ModelViewSet):
     """Листинг новостей"""
     serializer_class = NewsListSerializer

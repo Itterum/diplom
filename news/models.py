@@ -5,11 +5,13 @@ import departments.models
 import uuid
 from shortuuid.django_fields import ShortUUIDField
 
+from utils.model_utils import generate_id
+
 
 class News(models.Model):
     """Новости"""
     id = ShortUUIDField(
-        primary_key=True, length=10, unique=True, default=uuid.uuid4().hex[:10], editable=False
+        primary_key=True, length=10, unique=True, default=generate_id, editable=False
     )
     name = models.CharField("Имя новости", max_length=150)
     description = models.TextField("Описание")
