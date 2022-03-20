@@ -1,5 +1,5 @@
 from rest_framework import routers
-from profiles.views import ProfileViewSet
+
 from departments.views import DepartmentsViewSet
 from speciality.views import SpecialityViewSet
 from news.views import NewsViewSet
@@ -7,8 +7,6 @@ from disciplines.views import DisciplinesViewSet
 from groups.views import GroupsViewSet
 from timetable.views import TimetableViewSet
 
-profilesRouter = routers.DefaultRouter()
-profilesRouter.register('', ProfileViewSet)
 
 departmentsRouter = routers.DefaultRouter()
 departmentsRouter.register('', DepartmentsViewSet)

@@ -254,7 +254,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 1
+    'PAGE_SIZE': 50
 }
 
 DJOSER = {
@@ -262,12 +262,7 @@ DJOSER = {
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
-    'SERIALIZERS': {
-        # 'user': 'profiles.serializers.UserSerializer',
-        # 'user_create': 'backend.accounts.serializers.UserCreateSerializer',
-        # 'user': 'backend.accounts.serializers.UserCreateSerializer',
-        # 'user_delete': 'djoser.serializers.UserDeleteSerializer',
-    },
+    'SERIALIZERS': {},
 }
 
 # SMTP
