@@ -1,10 +1,22 @@
 from rest_framework import viewsets
+from rest_framework import status
+from rest_framework.response import Response
+
 from .models import Timetable
 from .serializers import TimetableListSerializer
 
+from .filters import TimetableFilter
 
-# Create your views here.
+
 class TimetableViewSet(viewsets.ModelViewSet):
-    """Листинг специальностей"""
     serializer_class = TimetableListSerializer
     queryset = Timetable.objects.all()
+
+    filterset_class = TimetableFilter
+
+    def list(self, request, *args, **kwargs):
+        # TODO: improve the check for parameters
+        if not request.query_params:
+            return Response({'error': 'pass at least one parameter'},
+                            status=status.HTTP_404_NOT_FOUND)
+        return super().list(request, *args, **kwargs)
