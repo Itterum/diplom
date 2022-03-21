@@ -6,6 +6,7 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
+        depth = 1
         fields = (
             'id', 'username', 'department', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number', 'user_type',

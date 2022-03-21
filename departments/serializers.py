@@ -21,6 +21,7 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
+        depth = 1
         fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
                   'description', 'photo', 'photos', 'manager_department',
                   'count_news', 'count_specialty', 'count_groups')
