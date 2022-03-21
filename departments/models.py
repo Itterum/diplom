@@ -23,6 +23,7 @@ class Department(models.Model):
         blank=True,
     )
     description = models.TextField('Описание', blank=True, null=True)
+
     basic_timetable_department = models.FileField(
         'Основное рассписание', upload_to='timetable-d/',
         blank=True, null=True,
@@ -34,6 +35,23 @@ class Department(models.Model):
     session_absentia_timetable_department = models.FileField(
         'Рассписание сессии заочно', upload_to='timetable-d/', blank=True,
         null=True)
+
+    original_basic_timetable_department = models.FileField(
+        'Оригинал основного рассписания', upload_to='timetable-original/',
+        blank=True, null=True,
+        validators=[validate_file_extension]
+    )
+    original_session_timetable_department = models.FileField(
+        'Оригинальное расписание сессии', upload_to='timetable-original/',
+        blank=True, null=True,
+        validators=[validate_file_extension]
+    )
+    original_session_absentia_timetable_department = models.FileField(
+        'Оригинальное расписание сессии заочно', upload_to='timetable-original/',
+        blank=True, null=True,
+        validators=[validate_file_extension]
+    )
+
     photo = models.ImageField(
         'Фотография', upload_to='department/', blank=True, null=True)
     photos = models.ImageField(
