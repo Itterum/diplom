@@ -7,4 +7,5 @@ class GroupsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
+        depth = 1
         fields = "__all__"
