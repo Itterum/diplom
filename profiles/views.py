@@ -1,12 +1,13 @@
 from rest_framework import status
 
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from profiles.serializers import ProfileSerializer
 
 from .models import Profile
+from .permissions import IsOwnerOrReadOnly
 
 
 class ProfileRetrieveAPIView(RetrieveAPIView):
@@ -23,3 +24,12 @@ class ProfileRetrieveAPIView(RetrieveAPIView):
         else:
             serializer = self.get_serializer(instance=request.user)
         return Response(serializer.data)
+
+
+class ProfileUpdateAPIView(UpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+    def get_object(self):
+        return self.request.user
