@@ -8,4 +8,3 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     ALTER USER admin CREATEDB;
 EOSQL
 
-psql -h localhost -p 5432 -U admin diplom < mylocaldb.csv

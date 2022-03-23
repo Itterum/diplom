@@ -58,8 +58,6 @@ class Profile(AbstractUser):
         'Форма обучения', max_length=10, choices=EDUC_TYPE, default=NOT_SPECIFIED, blank=True, null=True
     )
 
-    # test_field_usr = models.CharField('Контактный телефон родителей', max_length=50, blank=True, null=True)
-
     # поля преподаветелей
     teacher = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
