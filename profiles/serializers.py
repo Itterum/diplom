@@ -25,3 +25,10 @@ class ProfileSerializer(serializers.ModelSerializer):
             'user_type': {'read_only': True},
             'group': {'read_only': True},
         }
+
+
+class ProfileDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        depth = 1
+        fields = ('id', 'full_name', 'photo')
