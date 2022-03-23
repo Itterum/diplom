@@ -7,4 +7,5 @@ class DisciplinesListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discipline
+        depth = 1
         fields = "__all__"

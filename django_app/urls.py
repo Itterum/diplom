@@ -33,10 +33,10 @@ urlpatterns = [
     path('api/v1/timetable/', include('timetable.urls')),
 
     path('api/v1/news/', include(newsRouter.urls)),
+    path('api/v1/groups/', include(groupsRouter.urls)),
     path('api/v1/departments/', include(departmentsRouter.urls)),
     path('api/v1/speciality/', include(specialityRouter.urls)),
     path('api/v1/disciplines/', include(disciplinesRouter.urls)),
-    path('api/v1/groups/', include(groupsRouter.urls)),
 ]
 
 urlpatterns += doc_urls

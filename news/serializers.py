@@ -7,4 +7,5 @@ class NewsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
+        depth = 1
         fields = "__all__"
