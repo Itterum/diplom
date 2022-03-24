@@ -16,7 +16,8 @@ class News(models.Model):
     photo = models.ImageField('Фотография', upload_to='department/')
     photos = models.ImageField('Фотографии', upload_to='department/', blank=True, null=True)
     gallery = models.ForeignKey(
-        'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True
+        'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True,
+        verbose_name='Галерея'
     )
     date = models.DateField('Дата рождения')
 
