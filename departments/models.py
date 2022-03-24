@@ -56,6 +56,9 @@ class Department(models.Model):
         'Фотография', upload_to='department/', blank=True, null=True)
     photos = models.ImageField(
         'Фотографии', upload_to='department/', blank=True, null=True)
+    gallery = models.ForeignKey(
+        'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True
+    )
 
     def __str__(self):
         return self.name
