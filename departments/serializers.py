@@ -1,15 +1,15 @@
-import profile
 from rest_framework import serializers
 
 from .models import Department
 
-from profiles.models import Profile
 from profiles.serializers import ProfileDetailSerializer
 
 from news.models import News
 from news.serializers import NewsListSerializer
 
 from groups.models import Group
+
+from gallery.serializers import GallerySerializer
 
 
 class DepartmentsListSerializer(serializers.ModelSerializer):
@@ -24,13 +24,15 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
     count_groups = serializers.SerializerMethodField()
     teachers = serializers.SerializerMethodField()
 
+    gallery = GallerySerializer()
+
     class Meta:
         model = Department
         depth = 1
         fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
                   'description', 'photo', 'photos', 'manager_department',
                   'teachers',
-                  'count_news', 'count_specialty', 'count_groups')
+                  'count_news', 'count_specialty', 'count_groups', 'gallery')
 
     def get_news(self, obj):
         return NewsListSerializer(News.objects.filter(department=obj),
