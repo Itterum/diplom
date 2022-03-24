@@ -1,6 +1,9 @@
 from rest_framework import viewsets
+
 from .models import Group
 from .serializers import GroupsListSerializer, GroupDetailSerializer
+
+from .filters import GroupFilter
 
 
 class GroupsViewSet(viewsets.ModelViewSet):
@@ -13,6 +16,8 @@ class GroupsViewSet(viewsets.ModelViewSet):
     }
 
     default_serializer_class = GroupsListSerializer
+
+    filterset_class = GroupFilter
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action,
