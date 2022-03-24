@@ -15,7 +15,8 @@ from .routers import (
     specialityRouter,
     disciplinesRouter,
     groupsRouter,
-    timetableRouter
+    timetableRouter,
+    peoplesRouter
 )
 
 
@@ -37,6 +38,8 @@ urlpatterns = [
     path('api/v1/departments/', include(departmentsRouter.urls)),
     path('api/v1/speciality/', include(specialityRouter.urls)),
     path('api/v1/disciplines/', include(disciplinesRouter.urls)),
+
+    path('api/v1/peoples/', include(peoplesRouter.urls)),
 ]
 
 urlpatterns += doc_urls
