@@ -15,6 +15,9 @@ class News(models.Model):
     department = models.ForeignKey('departments.Department', on_delete=models.CASCADE, blank=True, null=True)
     photo = models.ImageField('Фотография', upload_to='department/')
     photos = models.ImageField('Фотографии', upload_to='department/', blank=True, null=True)
+    gallery = models.ForeignKey(
+        'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True
+    )
     date = models.DateField('Дата рождения')
 
     def __str__(self):
