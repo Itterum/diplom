@@ -2,6 +2,8 @@ from django.db import models
 
 from utils.model_utils import generate_id
 
+from utils.model_utils import generate_id
+
 
 class News(models.Model):
     """Новости"""
