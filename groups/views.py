@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Group
-from .serializers import GroupsListSerializer, GroupDetailSerializer
+from .serializers import GroupsSerializer, GroupDetailSerializer
 
 
 class GroupsViewSet(viewsets.ModelViewSet):
@@ -8,11 +8,11 @@ class GroupsViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
 
     serializer_classes = {
-        'list': GroupsListSerializer,
+        'list': GroupsSerializer,
         'retrieve': GroupDetailSerializer,
     }
 
-    default_serializer_class = GroupsListSerializer
+    default_serializer_class = GroupsSerializer
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action,

@@ -5,13 +5,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import News
 from .serializers import (
-    NewsListSerializer,
+    NewsSerializer,
 )
 
 
 class NewsViewSet(viewsets.ModelViewSet):
     """Листинг новостей"""
-    serializer_class = NewsListSerializer
+    serializer_class = NewsSerializer
     queryset = News.objects.all()
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]

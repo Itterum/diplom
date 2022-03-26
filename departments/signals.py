@@ -2,7 +2,7 @@ from django.dispatch import receiver
 from django.db import transaction
 from django.db.models.signals import post_save
 
-from timetable.serializers import TimetableListSerializer
+from timetable.serializers import TimetableSerializer
 from .models import Department
 
 from utils.parsing import ParseXlsx
@@ -41,6 +41,6 @@ def parsing(path: str):
     data = parser.parse(to_dict=True)
 
     for day in data:
-        serializer = TimetableListSerializer(data=day)
+        serializer = TimetableSerializer(data=day)
         serializer.is_valid(raise_exception=True)
         serializer.save()

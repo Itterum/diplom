@@ -7,12 +7,12 @@ from profiles.models import Profile
 from profiles.serializers import ProfileDetailSerializer
 
 from news.models import News
-from news.serializers import NewsListSerializer
+from news.serializers import NewsSerializer
 
 from groups.models import Group
 
 
-class DepartmentsListSerializer(serializers.ModelSerializer):
+class DepartmentsSerializer(serializers.ModelSerializer):
     """Вывод кафедры"""
 
     news = serializers.SerializerMethodField()
@@ -33,7 +33,7 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
                   'count_news', 'count_specialty', 'count_groups')
 
     def get_news(self, obj):
-        return NewsListSerializer(News.objects.filter(department=obj),
+        return NewsSerializer(News.objects.filter(department=obj),
                                   many=True).data
 
     def get_count_groups(self, obj):

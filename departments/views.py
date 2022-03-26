@@ -3,11 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import Department
 from .serializers import (
-    DepartmentsListSerializer,
+    DepartmentsSerializer,
 )
 
 
 class DepartmentsViewSet(viewsets.ModelViewSet):
-    serializer_class = DepartmentsListSerializer
+    serializer_class = DepartmentsSerializer
     queryset = Department.objects.all()
     permission_classes = [IsAuthenticated]

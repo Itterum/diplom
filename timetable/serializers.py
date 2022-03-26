@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Timetable
 
 
-class TimetableListSerializer(serializers.ModelSerializer):
+class TimetableSerializer(serializers.ModelSerializer):
     """Вывод списка актеров и режиссеров"""
 
     class Meta:
