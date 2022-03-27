@@ -3,13 +3,13 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .models import Timetable
-from .serializers import TimetableListSerializer
+from .serializers import TimetableSerializer
 
 from .filters import TimetableFilter
 
 
 class TimetableViewSet(viewsets.ModelViewSet):
-    serializer_class = TimetableListSerializer
+    serializer_class = TimetableSerializer
     queryset = Timetable.objects.all()
 
     filterset_class = TimetableFilter
