@@ -7,3 +7,5 @@ class SpecialityViewSet(viewsets.ModelViewSet):
     """Листинг специальностей"""
     serializer_class = SpecialitySerializer
     queryset = Speciality.objects.all()
+
+    filter_fields = ['department']

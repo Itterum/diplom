@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'speciality',
     'disciplines',
     'timetable',
+    'gallery',
 ]
 
 AUTH_USER_MODEL = 'profiles.Profile'

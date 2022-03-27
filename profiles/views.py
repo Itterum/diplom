@@ -5,6 +5,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -50,5 +55,3 @@ class PeoplesViewSet(viewsets.ModelViewSet):
     filter_fields = ['department']  # фильтрация по полям ?department="значение"
     search_fields = ['name']  # поиск по полям ?search="значение"
     ordering_fields = ['name']  # сортировка по полям ?ordering="значение"
-
-    # пример совместного использования ?department="значение"&search="значение"&?ordering="значение"
