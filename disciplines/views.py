@@ -7,3 +7,5 @@ class DisciplinesViewSet(viewsets.ModelViewSet):
     """Листинг дисциплин"""
     serializer_class = DisciplinesListSerializer
     queryset = Discipline.objects.all()
+
+    filter_fields = ['department']
