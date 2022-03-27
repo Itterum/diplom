@@ -6,13 +6,12 @@ from profiles.serializers import ProfileDetailSerializer
 from .models import Group
 
 
-class GroupsListSerializer(serializers.ModelSerializer):
-    """Вывод списка актеров и режиссеров"""
+class GroupsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
         depth = 1
-        fields = "__all__"
+        fields = ('id', 'code', 'email', 'phone_number', 'spec', 'headmen', 'curator', 'visit_type', 'start_date', 'is_session')
 
 
 class GroupDetailSerializer(serializers.ModelSerializer):
@@ -22,7 +21,7 @@ class GroupDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         depth = 1
-        fields = "__all__"
+        fields = ('id', 'code', 'email', 'phone_number', 'spec', 'headmen', 'curator', 'visit_type', 'start_date', 'is_session')
 
     def get_students(self, obj):
         return ProfileDetailSerializer(Profile.objects.filter(group=obj,

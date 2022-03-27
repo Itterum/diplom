@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .models import News
 
 
-class NewsListSerializer(serializers.ModelSerializer):
+class NewsSerializer(serializers.ModelSerializer):
     """Вывод списка актеров и режиссеров"""
 
     class Meta:
         model = News
         depth = 1
-        fields = "__all__"
+        fields = ('id', 'name', 'description', 'department', 'photo', 'photos', 'date')
