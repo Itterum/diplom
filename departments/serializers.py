@@ -21,6 +21,9 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
     count_specialty = serializers.IntegerField(
         source='speciality_set.count'
     )
+    count_discipline = serializers.IntegerField(source='discipline_set.count')
+    count_students = serializers.IntegerField(source='profile_set.count')
+
     count_groups = serializers.SerializerMethodField()
     teachers = serializers.SerializerMethodField()
 
@@ -32,7 +35,8 @@ class DepartmentsListSerializer(serializers.ModelSerializer):
         fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
                   'description', 'photo', 'photos', 'manager_department',
                   'teachers',
-                  'count_news', 'count_specialty', 'count_groups', 'gallery')
+                  'count_news', 'count_specialty', 'count_groups',
+                  'count_discipline', 'count_students', 'gallery')
 
     def get_news(self, obj):
         return NewsListSerializer(News.objects.filter(department=obj),
