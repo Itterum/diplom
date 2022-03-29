@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from .models import Group
-from .serializers import GroupsListSerializer, GroupDetailSerializer
+from .serializers import GroupsSerializer, GroupDetailSerializer
 
 from .filters import GroupFilter
 
@@ -11,11 +11,11 @@ class GroupsViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
 
     serializer_classes = {
-        'list': GroupsListSerializer,
+        'list': GroupsSerializer,
         'retrieve': GroupDetailSerializer,
     }
 
-    default_serializer_class = GroupsListSerializer
+    default_serializer_class = GroupsSerializer
 
     filterset_class = GroupFilter
 
