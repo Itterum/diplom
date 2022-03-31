@@ -24,4 +24,4 @@ jobs:
         python -m pip install flake8
     - name: Lint with flake8
       run: |
-        flake8 src/ --exclude=migrations,__pycache__ --max-line-length 120
+        flake8 ./ --exclude=migrations,__pycache__ --max-line-length 120
