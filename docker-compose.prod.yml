@@ -15,36 +15,28 @@ services:
       - ./.env.prod
     depends_on:
       - db
+
   db:
     image: postgres:12.0-alpine
     volumes:
-      - dmp_postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
-  vue:
-    build:
-      context: ../vue-movie
-      dockerfile: Dockerfile.prod
-    volumes:
-      - vue_dist:/app/dist
-    depends_on:
-      - web
+
   nginx:
-    build: ./nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
     ports:
       - 80:80
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
-      - vue_dist:/app/dist
     depends_on:
       - web
-      - vue
-
 
 
 volumes:
-  dmp_postgres_data:
+  postgres_data:
   static_volume:
   media_volume:
-  vue_dist:
