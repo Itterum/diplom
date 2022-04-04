@@ -9,5 +9,5 @@ class TimetableFilter(filters.FilterSet):
         fields = ('teacher', 'session', 'group')
 
     def group_filter(self, queryset, name, value):
-        group_queryset = Group.objects.filter(department=value)
+        group_queryset = Group.objects.filter(gruop=value)
         return queryset.filter(spec__in=group_queryset)
