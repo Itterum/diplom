@@ -1,6 +1,7 @@
 from django_filters import rest_framework as filters
 
-from .models import Timetable, Group
+from .models import Timetable
+from groups.models import Group
 
 
 class TimetableFilter(filters.FilterSet):
