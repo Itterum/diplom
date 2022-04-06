@@ -12,4 +12,4 @@ class DisciplineAdmin(AjaxSelectAdmin):
         'department': 'department',
     })
 
-    readonly_fields=('id',)
+    readonly_fields = ('id',)

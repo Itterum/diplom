@@ -39,8 +39,7 @@ class DepartmentsSerializer(serializers.ModelSerializer):
                   'count_discipline', 'count_students', 'gallery')
 
     def get_news(self, obj):
-        return NewsSerializer(News.objects.filter(department=obj),
-                                  many=True).data
+        return NewsSerializer(News.objects.filter(department=obj), many=True).data
 
     def get_count_groups(self, obj):
         speciality = obj.speciality_set.all()
