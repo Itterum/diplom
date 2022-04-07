@@ -75,7 +75,7 @@ class Department(models.Model):
                     if getattr(old, field_name) != getattr(new, field_name):
                         changed_fields.append(field_name)
                 except Exception as ex:
-                    pass
+                    print(f'Exception: {ex}')
             kwargs['update_fields'] = changed_fields
         super().save(*args, **kwargs)
 

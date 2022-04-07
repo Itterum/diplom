@@ -14,4 +14,4 @@ class GroupAdmin(AjaxSelectAdmin):
         'spec': 'speciality'
     })
 
-    readonly_fields=('id',)
+    readonly_fields = ('id',)

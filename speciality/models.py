@@ -3,6 +3,7 @@ from shortuuid.django_fields import ShortUUIDField
 
 from utils.model_utils import generate_id
 
+
 class Speciality(models.Model):
     """Специальности"""
     id = ShortUUIDField(

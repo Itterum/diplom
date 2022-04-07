@@ -1,7 +1,7 @@
 import re
 
 from openpyxl import load_workbook
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 from typing import List, Union
 
 from openpyxl.worksheet.worksheet import Worksheet
