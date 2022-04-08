@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9]
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Executing remote command
+      uses: appleboy/ssh-action@master
+      with:
+        HOST: ${{ secrets.DEPLOY_HOST }}
+        USERNAME: ${{ secrets.DEPLOY_USER }}
+        PORT: ${{ secrets.DEPLOY_PORT }}
+        KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        script: cd ${{ secrets.PWD }} && eval "$(ssh-agent -s)" && ssh-add ../diplom-git-keys/diplom-git && git pull git@github.com:z2403i3/diplom.git && docker-compose down && docker-compose up -d
