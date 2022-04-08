@@ -15,7 +15,7 @@ def add_timetable(sender, instance: Department, created, **kwargs):
     if created:
         if instance.basic_timetable_department.name:
             parsing(instance.basic_timetable_department)
-        
+
         if instance.session_absentia_timetable_department.name:
             parsing(instance.session_absentia_timetable_department)
 
