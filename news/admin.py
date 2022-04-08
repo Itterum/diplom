@@ -4,4 +4,4 @@ from .models import News
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    readonly_fields=('id',)
+    readonly_fields = ('id',)

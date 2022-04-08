@@ -15,7 +15,6 @@ from .routers import (
     specialityRouter,
     disciplinesRouter,
     groupsRouter,
-    timetableRouter,
     galleryRouter,
     peoplesRouter
 )
