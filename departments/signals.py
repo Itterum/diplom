@@ -14,6 +14,9 @@ from utils.parsing import ParseXlsx
 def add_timetable(sender, instance: Department, created, **kwargs):
     update_fields = kwargs.get('update_fields')
 
+    print(type(instance.basic_timetable_department))
+    print(dir(instance))
+
     if created:
         if field := instance:
             delete_old_schedule(field)
@@ -30,15 +33,18 @@ def add_timetable(sender, instance: Department, created, **kwargs):
     if update_fields is None:
         return
 
-    if "session_timetable_department" in update_fields:
+    if "session_timetable_department" in update_fields \
+            and instance.session_timetable_department.name != "":
         delete_old_schedule(instance)
         parsing(instance.session_timetable_department)
 
-    if "session_absentia_timetable_department" in update_fields:
+    if "session_absentia_timetable_department" in update_fields \
+            and instance.session_absentia_timetable_department.name != "":
         delete_old_schedule(instance)
         parsing(instance.session_absentia_timetable_department)
 
-    if "basic_timetable_department" in update_fields:
+    if "basic_timetable_department" in update_fields \
+            and instance.basic_timetable_department.name != "":
         delete_old_schedule(instance)
         parsing(instance.basic_timetable_department)
 
