@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from profiles.filters import ProfileFilter
 
 from profiles.serializers import ProfileSerializer
 
@@ -48,6 +49,6 @@ class PeoplesViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     permission_classes = [IsAuthenticatedOrReadOnly]  # проверка на авторизированого юзера
 
-    filter_fields = ['department']  # фильтрация по полям ?department="значение"
+    filterset_class = ProfileFilter
     search_fields = ['name']  # поиск по полям ?search="значение"
     ordering_fields = ['name']  # сортировка по полям ?ordering="значение"

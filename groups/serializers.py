@@ -23,7 +23,8 @@ class GroupDetailSerializer(serializers.ModelSerializer):
         model = Group
         depth = 1
         fields = ('id', 'code', 'email', 'phone_number', 'spec',
-                  'headmen', 'curator', 'visit_type', 'start_date', 'is_session')
+                  'headmen', 'curator', 'visit_type', 'start_date', 'is_session',
+                  'students')
 
     def get_students(self, obj):
         return ProfileDetailSerializer(Profile.objects.filter(group=obj,

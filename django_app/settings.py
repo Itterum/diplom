@@ -226,7 +226,10 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:1313",
     "http://localhost:1313",
-    "http://164.90.190.249"
+    "http://164.90.190.249",
+
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
 ]
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '7363441'
