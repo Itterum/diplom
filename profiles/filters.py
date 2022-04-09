@@ -5,7 +5,7 @@ from .models import Profile
 
 class ProfileFilter(filters.FilterSet):
 
-    unattached_students = filters.BooleanFilter(method='unattached_students_filter')
+    unattached_students = filters.CharFilter(method='unattached_students_filter')
 
     class Meta:
         model = Profile
@@ -13,5 +13,5 @@ class ProfileFilter(filters.FilterSet):
 
     def unattached_students_filter(self, queryset, name, value):
         queryset = Profile.objects.filter(user_type=Profile.USER_TYPE[0][0],
-                                          group=None)
+                                          group=None, department=value)
         return queryset
