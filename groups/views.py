@@ -9,7 +9,10 @@ from mixins.views import DeleteSetMixin
 from profiles.models import Profile
 
 from .models import Group
-from .serializers import GroupsSerializer, GroupDetailSerializer
+from .serializers import (
+    GroupsSerializer, GroupDetailSerializer,
+    GroupUpdateSerializer
+)
 
 from .filters import GroupFilter
 
@@ -21,6 +24,8 @@ class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     serializer_classes = {
         'list': GroupsSerializer,
         'retrieve': GroupDetailSerializer,
+        'partial_update': GroupUpdateSerializer,
+        'update': GroupUpdateSerializer,
     }
 
     permission_classes = {
@@ -33,6 +38,7 @@ class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     filterset_class = GroupFilter
 
     def get_serializer_class(self):
+        print(self.action)
         return self.serializer_classes.get(self.action,
                                            self.default_serializer_class)
 
