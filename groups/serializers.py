@@ -15,6 +15,14 @@ class GroupsSerializer(serializers.ModelSerializer):
                   'headmen', 'curator', 'visit_type', 'start_date', 'is_session')
 
 
+class GroupUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Group
+        fields = ('id', 'code', 'email', 'phone_number', 'spec',
+                  'headmen', 'curator', 'visit_type', 'start_date', 'is_session')
+
+
 class GroupDetailSerializer(serializers.ModelSerializer):
 
     students = serializers.SerializerMethodField()
