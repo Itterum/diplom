@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from mixins.views import DeleteSetMixin
+
 from profiles.models import Profile
 
 from .models import Group
@@ -12,7 +14,7 @@ from .serializers import GroupsSerializer, GroupDetailSerializer
 from .filters import GroupFilter
 
 
-class GroupsViewSet(viewsets.ModelViewSet):
+class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг групп"""
     queryset = Group.objects.all()
 
