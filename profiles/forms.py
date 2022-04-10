@@ -9,7 +9,8 @@ class ProfileCreationForm(UserCreationForm):
                 'username', 'password', 'department', 'full_name', 'first_name', 'last_name',
                 'gender', 'email', 'birth_date', 'phone_number', 'user_type',
                 'address', 'photo', 'is_active', 'is_superuser', 'group',
-                'phone_number_parents', 'educ_type', 'position', 'qualification'
+                'phone_number_parents', 'educ_type', 'position', 'qualification',
+                'is_manager'
             )
         }),
     )
@@ -19,7 +20,8 @@ class ProfileCreationForm(UserCreationForm):
                 'username', 'password1', 'department', 'password2', 'full_name', 'first_name', 'last_name',
                 'gender', 'email', 'birth_date', 'phone_number', 'user_type',
                 'address', 'photo', 'is_active', 'is_superuser', 'group',
-                'phone_number_parents', 'educ_type', 'position', 'qualification'
+                'phone_number_parents', 'educ_type', 'position', 'qualification',
+                'is_manager'
             )
         }),
     )
@@ -30,7 +32,8 @@ class ProfileCreationForm(UserCreationForm):
             'username', 'password', 'department', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number', 'user_type',
             'address', 'photo', 'is_active', 'is_superuser', 'group',
-            'phone_number_parents', 'educ_type', 'position', 'qualification'
+            'phone_number_parents', 'educ_type', 'position', 'qualification',
+            'is_manager'
         )
 
 
@@ -41,7 +44,8 @@ class ProfileChangeForm(UserChangeForm):
                 'username', 'password', 'department', 'full_name', 'first_name', 'last_name',
                 'gender', 'email', 'birth_date', 'phone_number', 'user_type',
                 'address', 'photo', 'is_active', 'is_superuser', 'group',
-                'phone_number_parents', 'educ_type', 'position', 'qualification'
+                'phone_number_parents', 'educ_type', 'position', 'qualification',
+                'is_manager'
             )
         }),
     )
@@ -51,7 +55,8 @@ class ProfileChangeForm(UserChangeForm):
                 'username', 'password1', 'department', 'password2', 'full_name', 'first_name', 'last_name',
                 'gender', 'email', 'birth_date', 'phone_number', 'user_type',
                 'address', 'photo', 'is_active', 'is_superuser', 'group',
-                'phone_number_parents', 'educ_type', 'position', 'qualification'
+                'phone_number_parents', 'educ_type', 'position', 'qualification',
+                'is_manager'
             )
         }),
     )
@@ -62,5 +67,6 @@ class ProfileChangeForm(UserChangeForm):
             'username', 'password', 'department', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number',
             'address', 'photo', 'is_active', 'is_superuser', 'group',
-            'phone_number_parents', 'educ_type', 'position', 'qualification'
+            'phone_number_parents', 'educ_type', 'position', 'qualification',
+            'is_manager'
         )

@@ -14,19 +14,16 @@ from utils.parsing import ParseXlsx
 def add_timetable(sender, instance: Department, created, **kwargs):
     update_fields = kwargs.get('update_fields')
 
-    print(type(instance.basic_timetable_department))
-    print(dir(instance))
-
     if created:
-        if field := instance:
+        if field := instance.basic_timetable_department.name:
             delete_old_schedule(field)
             parsing(field.basic_timetable_department.name)
 
-        if field := instance:
+        if field := instance.session_absentia_timetable_department.name:
             delete_old_schedule(field)
             parsing(field.session_absentia_timetable_department.name)
 
-        if field := instance:
+        if field := instance.session_timetable_department.name:
             delete_old_schedule(field)
             parsing(field.session_timetable_department.name)
 
