@@ -4,10 +4,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework_jwt.views import obtain_jwt_token
+from ajax_select import urls as ajax_select_urls
 
 from .yasg import urlpatterns as doc_urls
-
-from ajax_select import urls as ajax_select_urls
 
 from .routers import (
     newsRouter,
@@ -32,6 +31,7 @@ urlpatterns = [
 
     path('api/v1/profiles/', include('profiles.urls')),
     path('api/v1/timetable/', include('timetable.urls')),
+    path('api/v1/management/', include('management.urls')),
 
     path('api/v1/news/', include(newsRouter.urls)),
     path('api/v1/groups/', include(groupsRouter.urls)),
@@ -45,4 +45,5 @@ urlpatterns = [
 urlpatterns += doc_urls
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

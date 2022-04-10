@@ -65,6 +65,8 @@ class Profile(AbstractUser):
     position = models.CharField('Должность', max_length=50, blank=True, null=True)
     qualification = models.CharField('Квалификация', max_length=50, blank=True, null=True)
 
+    is_manager = models.BooleanField('Менеджер', default=False)
+
     def clean(self) -> None:
         subject = self.email
 
