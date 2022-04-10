@@ -38,7 +38,6 @@ class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     filterset_class = GroupFilter
 
     def get_serializer_class(self):
-        print(self.action)
         return self.serializer_classes.get(self.action,
                                            self.default_serializer_class)
 
