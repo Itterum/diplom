@@ -16,7 +16,7 @@ from .filters import GroupFilter
 
 class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг групп"""
-    queryset = Group.objects.all()
+    queryset = Group.objects.filter(is_active=True)
 
     serializer_classes = {
         'list': GroupsSerializer,

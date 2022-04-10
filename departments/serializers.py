@@ -36,7 +36,7 @@ class DepartmentsSerializer(serializers.ModelSerializer):
                   'description', 'photo', 'photos', 'manager_department',
                   'teachers',
                   'count_news', 'count_specialty', 'count_groups',
-                  'count_discipline', 'count_students', 'gallery')
+                  'count_discipline', 'count_students', 'gallery', 'is_active')
 
     def get_news(self, obj):
         return NewsSerializer(News.objects.filter(department=obj), many=True).data

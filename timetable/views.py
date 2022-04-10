@@ -10,7 +10,7 @@ from .filters import TimetableFilter
 
 class TimetableViewSet(viewsets.ModelViewSet):
     serializer_class = TimetableSerializer
-    queryset = Timetable.objects.all()
+    queryset = Timetable.objects.filter(is_active=True)
 
     filterset_class = TimetableFilter
 
