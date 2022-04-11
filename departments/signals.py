@@ -3,7 +3,7 @@ from django.db import transaction
 from django.db.models.signals import post_save
 
 from timetable.models import Timetable
-from timetable.serializers import TimetableSerializer
+from timetable.serializers import TimetableCreateSerializer
 
 from .models import Department
 
@@ -56,6 +56,8 @@ def parsing(path: str):
     data = parser.parse(to_dict=True)
 
     for day in data:
-        serializer = TimetableSerializer(data=day)
+        serializer = TimetableCreateSerializer(data=day)
         serializer.is_valid(raise_exception=True)
+        print(serializer.initial_data)
+        print(serializer.validated_data)
         serializer.save()
