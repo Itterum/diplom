@@ -12,7 +12,7 @@ from .serializers import (
 class NewsViewSet(viewsets.ModelViewSet):
     """Листинг новостей"""
     serializer_class = NewsSerializer
-    queryset = News.objects.all()
+    queryset = News.objects.filter(is_active=True)
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     permission_classes = [IsAuthenticatedOrReadOnly]  # проверка на авторизированого юзера

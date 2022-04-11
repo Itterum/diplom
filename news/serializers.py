@@ -8,4 +8,4 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         depth = 1
-        fields = ('id', 'name', 'description', 'department', 'photo', 'photos', 'date')
+        fields = ('id', 'name', 'description', 'department', 'photo', 'photos', 'date', 'is_active')

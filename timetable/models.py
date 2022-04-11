@@ -61,6 +61,11 @@ class Timetable(models.Model):
                               on_delete=models.CASCADE, blank=True,
                               null=True, to_field='id')
     session = models.BooleanField('Сессия', default=False)
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.id

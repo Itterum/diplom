@@ -17,6 +17,11 @@ class News(models.Model):
         'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Галерея'
     )
     date = models.DateField('Дата рождения')
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.name
