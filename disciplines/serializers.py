@@ -10,6 +10,7 @@ class DisciplinesSerializer(serializers.ModelSerializer):
         depth = 1
         fields = ('id', 'name', 'department', 'is_active')
 
+
 class DisciplinesUpdateSerializer(serializers.ModelSerializer):
     """Вывод дисциплин"""
 
