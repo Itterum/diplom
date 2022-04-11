@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from mixins.views import DeleteSetMixin
 
 from profiles.models import Profile
+from management.permissions import IsManagerOrReadOnly
 
 from .models import Group
 from .serializers import (
@@ -28,23 +29,15 @@ class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
         'update': GroupUpdateSerializer,
     }
 
-    permission_classes = {
-        'update': IsAuthenticated,
-    }
+    permission_classes = [IsManagerOrReadOnly]
 
     default_serializer_class = GroupsSerializer
-    default_permission_class = AllowAny
 
     filterset_class = GroupFilter
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action,
                                            self.default_serializer_class)
-
-    def get_permissions(self):
-        permissions = [self.permission_classes.get(self.action,
-                       self.default_permission_class)]
-        return [permission() for permission in permissions]
 
     @action(detail=False, methods=['PATH', 'PUT'], url_path='change-session')
     def change_session(self, request):
