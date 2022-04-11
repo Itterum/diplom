@@ -9,6 +9,7 @@ class NewsSerializer(serializers.ModelSerializer):
         depth = 1
         fields = ('id', 'name', 'description', 'department', 'photo', 'photos', 'date', 'is_active')
 
+
 class NewsUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:

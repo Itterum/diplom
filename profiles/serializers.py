@@ -27,6 +27,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'group': {'read_only': True},
         }
 
+
 class ProfileUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -37,6 +38,7 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
             'address', 'photo', 'group',
             'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
+
 
 class ProfileDetailSerializer(serializers.ModelSerializer):
 
