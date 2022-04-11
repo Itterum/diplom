@@ -8,4 +8,4 @@ class DisciplinesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discipline
         depth = 1
-        fields = ('id', 'name', 'department')
+        fields = ('id', 'name', 'department', 'is_active')

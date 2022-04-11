@@ -9,5 +9,5 @@ from .serializers import (
 
 class DepartmentsViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentsSerializer
-    queryset = Department.objects.all()
+    queryset = Department.objects.filter(is_active=True)
     permission_classes = [IsAuthenticated]

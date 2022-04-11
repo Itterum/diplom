@@ -14,6 +14,11 @@ class Speciality(models.Model):
                                    blank=True, null=True)
     remote_education_time = models.CharField('Время обучения удалённо', max_length=150)
     locale_education_time = models.CharField('Время обучения очно', max_length=150)
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.name
