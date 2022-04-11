@@ -9,7 +9,7 @@ from mixins.views import DeleteSetMixin
 from management.permissions import IsManagerOrReadOnly
 
 
-class DisciplinesViewSet(viewsets.ModelViewSet):
+class DisciplinesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг дисциплин"""
     queryset = Discipline.objects.filter(is_active=True)
     filter_fields = ['department']
