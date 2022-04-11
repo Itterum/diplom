@@ -12,6 +12,7 @@ from management.permissions import IsManagerOrReadOnly
 class DisciplinesViewSet(viewsets.ModelViewSet):
     """Листинг дисциплин"""
     queryset = Discipline.objects.filter(is_active=True)
+    filter_fields = ['department']
 
     serializer_class = {
         'list': DisciplinesSerializer,
@@ -20,10 +21,8 @@ class DisciplinesViewSet(viewsets.ModelViewSet):
 
     permission_classes = [IsManagerOrReadOnly]
 
-    default_serializer_class = GroupsSerializer
+    default_serializer_class = DisciplinesSerializer
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action,
                                            self.default_serializer_class)
-
-    filter_fields = ['department']
