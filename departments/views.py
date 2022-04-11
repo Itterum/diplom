@@ -4,10 +4,21 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Department
 from .serializers import (
     DepartmentsSerializer,
+    DepartmentsUpdateSerializer,
 )
 
 
-class DepartmentsViewSet(viewsets.ModelViewSet):
-    serializer_class = DepartmentsSerializer
+class DepartmentsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     queryset = Department.objects.filter(is_active=True)
-    permission_classes = [IsAuthenticated]
+
+    serializer_class = {
+        'list': DepartmentsSerializer,
+        'update': DepartmentsUpdateSerializer,
+    }
+    permission_classes = [IsManagerOrReadOnly]
+
+    default_serializer_class = DepartmentsSerializer
+
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action,
+                                           self.default_serializer_class)
