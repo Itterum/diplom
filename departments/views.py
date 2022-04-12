@@ -14,6 +14,7 @@ class DepartmentsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
 
     serializer_class = {
         'list': DepartmentsSerializer,
+        'partial_update': DepartmentsUpdateSerializer,
         'update': DepartmentsUpdateSerializer,
     }
     permission_classes = [IsManagerOrReadOnly]

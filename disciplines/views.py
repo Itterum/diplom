@@ -16,6 +16,7 @@ class DisciplinesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
 
     serializer_class = {
         'list': DisciplinesSerializer,
+        'partial_update': DisciplinesUpdateSerializer,
         'update': DisciplinesUpdateSerializer,
     }
 

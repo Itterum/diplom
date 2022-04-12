@@ -15,6 +15,7 @@ class NewsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг новостей"""
     serializer_class = {
         'list': NewsSerializer,
+        'partial_update': NewsUpdateSerializer,
         'update': NewsUpdateSerializer,
     }
 

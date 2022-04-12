@@ -50,6 +50,7 @@ class PeoplesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
 
     serializer_class = {
         'list': ProfileSerializer,
+        'partial_update': ProfileUpdateSerializer,
         'update': ProfileUpdateSerializer,
     }
 
