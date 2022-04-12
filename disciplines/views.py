@@ -14,7 +14,7 @@ class DisciplinesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     queryset = Discipline.objects.filter(is_active=True)
     filter_fields = ['department']
 
-    serializer_class = {
+    serializer_classes = {
         'list': DisciplinesSerializer,
         'partial_update': DisciplinesUpdateSerializer,
         'update': DisciplinesUpdateSerializer,
