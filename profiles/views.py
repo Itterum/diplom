@@ -3,17 +3,21 @@ from rest_framework import viewsets
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from profiles.filters import ProfileFilter
 
-from profiles.serializers import ProfileSerializer
+from profiles.serializers import (
+    ProfileSerializer,
+    ProfileUpdateSerializer
+)
 
 from .models import Profile
 from .permissions import IsOwnerOrReadOnly
+from mixins.views import DeleteSetMixin
+from management.permissions import IsManagerOrReadOnly
 
 
 class ProfileRetrieveAPIView(RetrieveAPIView):
@@ -41,14 +45,24 @@ class ProfileUpdateAPIView(UpdateAPIView):
         return self.request.user
 
 
-class PeoplesViewSet(viewsets.ModelViewSet):
-    """Листинг новостей"""
-    serializer_class = ProfileSerializer
+class PeoplesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     queryset = Profile.objects.all()
 
+    serializer_class = {
+        'list': ProfileSerializer,
+        'partial_update': ProfileUpdateSerializer,
+        'update': ProfileUpdateSerializer,
+    }
+
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    permission_classes = [IsAuthenticatedOrReadOnly]  # проверка на авторизированого юзера
+    permission_classes = [IsManagerOrReadOnly]
+
+    default_serializer_class = ProfileSerializer
 
     filterset_class = ProfileFilter
-    search_fields = ['name']  # поиск по полям ?search="значение"
-    ordering_fields = ['name']  # сортировка по полям ?ordering="значение"
+    search_fields = ['name']
+    ordering_fields = ['name']
+
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action,
+                                           self.default_serializer_class)

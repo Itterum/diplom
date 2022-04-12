@@ -9,3 +9,11 @@ class DisciplinesSerializer(serializers.ModelSerializer):
         model = Discipline
         depth = 1
         fields = ('id', 'name', 'department', 'is_active')
+
+
+class DisciplinesUpdateSerializer(serializers.ModelSerializer):
+    """Вывод дисциплин"""
+
+    class Meta:
+        model = Discipline
+        fields = ('id', 'name', 'department', 'is_active')
