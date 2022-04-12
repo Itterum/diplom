@@ -20,11 +20,11 @@ def add_timetable(sender, instance: Department, created, **kwargs):
             parsing(field.basic_timetable_department.name)
 
         if field := instance.session_absentia_timetable_department.name:
-            delete_old_schedule(field)
+            delete_old_schedule(field, True, 'remote')
             parsing(field.session_absentia_timetable_department.name)
 
         if field := instance.session_timetable_department.name:
-            delete_old_schedule(field)
+            delete_old_schedule(field, True)
             parsing(field.session_timetable_department.name)
 
     if update_fields is None:
@@ -32,12 +32,12 @@ def add_timetable(sender, instance: Department, created, **kwargs):
 
     if "session_timetable_department" in update_fields \
             and instance.session_timetable_department.name != "":
-        delete_old_schedule(instance)
+        delete_old_schedule(instance, True)
         parsing(instance.session_timetable_department)
 
     if "session_absentia_timetable_department" in update_fields \
             and instance.session_absentia_timetable_department.name != "":
-        delete_old_schedule(instance)
+        delete_old_schedule(instance, True, 'remote')
         parsing(instance.session_absentia_timetable_department)
 
     if "basic_timetable_department" in update_fields \
@@ -46,8 +46,12 @@ def add_timetable(sender, instance: Department, created, **kwargs):
         parsing(instance.basic_timetable_department)
 
 
-def delete_old_schedule(instance):
-    Timetable.objects.filter(department=instance).delete()
+def delete_old_schedule(instance, session=False, type_of_training=None):
+    if type_of_training:
+        Timetable.objects.filter(department=instance, session=session,
+                                 visit=type_of_training).delete()
+    else:
+        Timetable.objects.filter(department=instance, session=session).delete()
 
 
 @transaction.atomic
