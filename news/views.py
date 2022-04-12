@@ -13,7 +13,7 @@ from .serializers import (
 
 class NewsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг новостей"""
-    serializer_class = {
+    serializer_classes = {
         'list': NewsSerializer,
         'partial_update': NewsUpdateSerializer,
         'update': NewsUpdateSerializer,

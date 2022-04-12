@@ -48,7 +48,7 @@ class ProfileUpdateAPIView(UpdateAPIView):
 class PeoplesViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     queryset = Profile.objects.all()
 
-    serializer_class = {
+    serializer_classes = {
         'list': ProfileSerializer,
         'partial_update': ProfileUpdateSerializer,
         'update': ProfileUpdateSerializer,
