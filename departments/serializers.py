@@ -49,3 +49,14 @@ class DepartmentsSerializer(serializers.ModelSerializer):
     def get_teachers(self, obj):
         return ProfileDetailSerializer(
             obj.profile_set.filter(user_type="teacher"), many=True).data
+
+
+class DepartmentsUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Department
+        fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
+                  'description', 'photo', 'photos', 'manager_department',
+                  'teachers',
+                  'count_news', 'count_specialty', 'count_groups',
+                  'count_discipline', 'count_students', 'gallery', 'is_active')
