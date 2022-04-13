@@ -12,7 +12,7 @@ from .serializers import (
 class DepartmentsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     queryset = Department.objects.filter(is_active=True)
 
-    serializer_class = {
+    serializer_classes = {
         'list': DepartmentsSerializer,
         'partial_update': DepartmentsUpdateSerializer,
         'update': DepartmentsUpdateSerializer,
