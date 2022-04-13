@@ -6,9 +6,8 @@ from utils.model_utils import generate_id
 
 class Speciality(models.Model):
     """Специальности"""
-    id = ShortUUIDField(
-        primary_key=True, length=10, unique=True, default=generate_id, editable=False
-    )
+    id = models.CharField(primary_key=True, max_length=10,
+                          unique=True, default=generate_id)
     name = models.CharField("имя специальность", max_length=150)
     department = models.ForeignKey('departments.Department', verbose_name="Кафедра", on_delete=models.CASCADE,
                                    blank=True, null=True)
