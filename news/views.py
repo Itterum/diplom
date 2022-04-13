@@ -33,3 +33,13 @@ class NewsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action, self.default_serialuzer_class)
+
+    def update(self, request, *args, **kwargs):
+        photo = request.data.get('photo')
+
+        if photo:
+            news = NewsSerializer(News.objects.get(pk=kwargs['pk'])).data
+            if photo.endswith(news['photo']):
+                request.data.pop('photo')
+
+        return super().update(request, *args, **kwargs)
