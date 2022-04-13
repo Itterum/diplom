@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from mixins.serializers import Base64ImageField
+
 from .models import Profile
 
 
@@ -29,6 +31,8 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class ProfileUpdateSerializer(serializers.ModelSerializer):
+
+    photo = Base64ImageField()
 
     class Meta:
         model = Profile
