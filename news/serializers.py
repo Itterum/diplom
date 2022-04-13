@@ -1,4 +1,7 @@
 from rest_framework import serializers
+
+from mixins.serializers import Base64ImageField
+
 from .models import News
 
 
@@ -10,7 +13,9 @@ class NewsSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'department', 'photo', 'photos', 'date', 'is_active')
 
 
-class NewsUpdateSerializer(serializers.ModelSerializer):
+class NewsCreateSerializer(serializers.ModelSerializer):
+
+    photo = Base64ImageField()
 
     class Meta:
         model = News

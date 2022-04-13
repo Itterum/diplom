@@ -7,16 +7,17 @@ from management.permissions import IsManagerOrReadOnly
 
 from .models import News
 from .serializers import (
-    NewsSerializer, NewsUpdateSerializer
+    NewsSerializer, NewsCreateSerializer
 )
 
 
 class NewsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг новостей"""
-    serializer_class = {
+    serializer_classes = {
         'list': NewsSerializer,
-        'partial_update': NewsUpdateSerializer,
-        'update': NewsUpdateSerializer,
+        'partial_update': NewsCreateSerializer,
+        'update': NewsCreateSerializer,
+        'create': NewsCreateSerializer,
     }
 
     queryset = News.objects.filter(is_active=True)
