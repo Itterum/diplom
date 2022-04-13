@@ -7,7 +7,7 @@ from utils.model_utils import generate_id
 class Speciality(models.Model):
     """Специальности"""
     id = models.CharField(primary_key=True, max_length=10,
-                          unique=True, default=generate_id)
+                          unique=True, default=generate_id, editable=False)
     name = models.CharField("имя специальность", max_length=150)
     department = models.ForeignKey('departments.Department', verbose_name="Кафедра", on_delete=models.CASCADE,
                                    blank=True, null=True)

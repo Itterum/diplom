@@ -3,7 +3,6 @@ from .models import Speciality
 
 
 class SpecialitySerializer(serializers.ModelSerializer):
-    """Вывод списка актеров и режиссеров"""
 
     class Meta:
         model = Speciality
