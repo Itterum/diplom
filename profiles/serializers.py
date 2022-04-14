@@ -34,7 +34,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class ProfileUpdateSerializer(serializers.ModelSerializer):
 
-    photo = Base64ImageField()
+    photo = Base64ImageField(allow_null=True)
 
     class Meta:
         model = Profile
@@ -56,7 +56,7 @@ class ProfileDetailSerializer(serializers.ModelSerializer):
 
 class ProfileCreateSerializer(UserCreateSerializer):
 
-    photo = Base64ImageField()
+    photo = Base64ImageField(allow_null=True)
 
     class Meta:
         model = UserCreateSerializer.Meta.model
