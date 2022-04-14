@@ -54,13 +54,10 @@ class DepartmentsSerializer(serializers.ModelSerializer):
 
 
 class DepartmentsUpdateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Department
-        fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
+        fields = ('id', 'name', 'email', 'phone_number', 'address',
                   'description', 'photo', 'photos', 'manager_department',
-                  'teachers',
-                  'count_news', 'count_specialty', 'count_groups',
-                  'count_discipline', 'count_students', 'gallery', 'is_active',
+                  'gallery', 'is_active',
                   'original_basic_timetable_department', 'original_session_timetable_department',
                   'original_session_absentia_timetable_department')
