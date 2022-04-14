@@ -45,3 +45,8 @@ pgdata
 # dumps
 db.json
 .vscode
+
+# env
+.env.dev
+.env.prod
+.env.prod.db

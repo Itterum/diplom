@@ -270,8 +270,10 @@ DJOSER = {
 }
 
 # SMTP
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.example.com'
-EMAIL_HOST_USER = 'admin@example.com'
-EMAIL_HOST_PASSWORD = 'adminmail'
-EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+DEFAILT_SEND_EMAIL = os.environ.get('DEFAILT_SEND_EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 2525))
+EMAIL_USE_TLS = bool(os.environ.get('EMAIL_HOST_PASSWORD', True))

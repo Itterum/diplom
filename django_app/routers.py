@@ -8,7 +8,7 @@ from groups.views import GroupsViewSet
 from timetable.views import TimetableViewSet
 from gallery.views import GalleryViewSet
 
-from profiles.views import PeoplesViewSet
+from profiles.views import PeoplesViewSet, CustomUserViewSet
 
 departmentsRouter = routers.DefaultRouter()
 departmentsRouter.register('', DepartmentsViewSet)
@@ -33,3 +33,6 @@ galleryRouter.register('', GalleryViewSet)
 
 peoplesRouter = routers.DefaultRouter()
 peoplesRouter.register('', PeoplesViewSet)
+
+user_djoser_router = routers.DefaultRouter()
+user_djoser_router.register('', CustomUserViewSet)
