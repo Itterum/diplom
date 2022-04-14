@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from management.permissions import IsManagerOrReadOnly
 
 from .models import Photo
-from .serializers import GalleryCreateSerializer, GallerySerializer, PhotoSerializer, PhotoCreateSerializer
+from .serializers import GalleryCreateSerializer, GallerySerializer, PhotoCreateSerializer
 
 from .filters import GalleryFilter
 

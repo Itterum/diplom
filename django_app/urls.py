@@ -6,8 +6,6 @@ from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 from ajax_select import urls as ajax_select_urls
 
-from profiles.views import CustomUserViewSet
-
 from .yasg import urlpatterns as doc_urls
 
 from .routers import (
