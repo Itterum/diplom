@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from djoser.serializers import UserCreateSerializer
+
 from mixins.serializers import Base64ImageField
 
 from .models import Profile
@@ -62,3 +64,7 @@ class ProfileCreateSerializer(serializers.ModelSerializer):
             'address', 'photo', 'group',
             'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
+
+
+class ProfileCreateDjoserSerializer(UserCreateSerializer):
+    photo = Base64ImageField()
