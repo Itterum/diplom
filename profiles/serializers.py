@@ -54,23 +54,23 @@ class ProfileDetailSerializer(serializers.ModelSerializer):
         fields = ('id', 'full_name', 'photo', 'gender')
 
 
-class ProfileCreateSerializer(serializers.ModelSerializer):
+class ProfileCreateSerializer(UserCreateSerializer):
 
     photo = Base64ImageField()
 
     class Meta:
-        model = Profile
-        fields = (
-            'id', 'department', 'full_name', 'first_name', 'last_name',
+        model = UserCreateSerializer.Meta.model
+        fields = UserCreateSerializer.Meta.fields + (
+            'username',
+            'department', 'full_name', 'first_name', 'last_name',
             'gender', 'email', 'birth_date', 'phone_number', 'user_type',
             'address', 'photo', 'group',
             'phone_number_parents', 'educ_type', 'position', 'qualification',
         )
 
 
-class ProfileCreateDjoserSerializer(UserCreateSerializer):
-    photo = Base64ImageField()
+class ProfileValidateSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = UserCreateSerializer.Meta.model
-        fields = UserCreateSerializer.Meta.fields + ('photo',)
+        model = Profile
+        fields = ('email',)

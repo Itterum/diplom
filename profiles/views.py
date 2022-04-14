@@ -17,7 +17,8 @@ from profiles.managers import CustomUserManager
 from profiles.serializers import (
     ProfileSerializer,
     ProfileUpdateSerializer,
-    ProfileCreateSerializer
+    ProfileCreateSerializer,
+    ProfileValidateSerializer
 )
 from profiles.filters import ProfileFilter
 
@@ -83,7 +84,7 @@ class CustomUserViewSet(UserViewSet):
         if isinstance(request.data, QueryDict):
             request.data._mutable = True
 
-        serializer = ProfileCreateSerializer(data=request.data)
+        serializer = ProfileValidateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         email = serializer.data['email']
