@@ -2,11 +2,11 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from mixins.views import DeleteSetMixin
 
 from profiles.models import Profile
+from management.permissions import IsManagerOrReadOnly
 
 from .models import Group
 from .serializers import (
@@ -19,7 +19,7 @@ from .filters import GroupFilter
 
 class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
     """Листинг групп"""
-    queryset = Group.objects.all()
+    queryset = Group.objects.filter(is_active=True)
 
     serializer_classes = {
         'list': GroupsSerializer,
@@ -28,23 +28,15 @@ class GroupsViewSet(DeleteSetMixin, viewsets.ModelViewSet):
         'update': GroupUpdateSerializer,
     }
 
-    permission_classes = {
-        'update': IsAuthenticated,
-    }
+    permission_classes = [IsManagerOrReadOnly]
 
     default_serializer_class = GroupsSerializer
-    default_permission_class = AllowAny
 
     filterset_class = GroupFilter
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action,
                                            self.default_serializer_class)
-
-    def get_permissions(self):
-        permissions = [self.permission_classes.get(self.action,
-                       self.default_permission_class)]
-        return [permission() for permission in permissions]
 
     @action(detail=False, methods=['PATH', 'PUT'], url_path='change-session')
     def change_session(self, request):

@@ -28,6 +28,11 @@ class Group(models.Model):
     visit_type = models.CharField('Тип группы', max_length=10, choices=VISITTYPE, default=VISITTYPE[1][0])
     start_date = models.DateField('Начало обучения')
     is_session = models.BooleanField('Началась ли сессия?', default=False)
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.code

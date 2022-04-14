@@ -59,6 +59,11 @@ class Department(models.Model):
     gallery = models.ForeignKey(
         'gallery.Gallery', on_delete=models.CASCADE, blank=True, null=True
     )
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.name

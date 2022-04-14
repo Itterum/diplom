@@ -15,7 +15,8 @@ from .routers import (
     disciplinesRouter,
     groupsRouter,
     galleryRouter,
-    peoplesRouter
+    peoplesRouter,
+    user_djoser_router
 )
 
 
@@ -26,7 +27,7 @@ urlpatterns = [
     path('ajax_select/', include(ajax_select_urls)),
 
     # authorization
-    path('api/v1/', include("djoser.urls.base")),
+    path('api/v1/users', include(user_djoser_router.urls)),
     path('api/v1/auth/token-create/', obtain_jwt_token, name='obtain_jwt_token'),
 
     path('api/v1/profiles/', include('profiles.urls')),

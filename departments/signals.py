@@ -3,7 +3,7 @@ from django.db import transaction
 from django.db.models.signals import post_save
 
 from timetable.models import Timetable
-from timetable.serializers import TimetableSerializer
+from timetable.serializers import TimetableCreateSerializer
 
 from .models import Department
 
@@ -20,11 +20,11 @@ def add_timetable(sender, instance: Department, created, **kwargs):
             parsing(field.basic_timetable_department.name)
 
         if field := instance.session_absentia_timetable_department.name:
-            delete_old_schedule(field)
+            delete_old_schedule(field, True, 'remote')
             parsing(field.session_absentia_timetable_department.name)
 
         if field := instance.session_timetable_department.name:
-            delete_old_schedule(field)
+            delete_old_schedule(field, True)
             parsing(field.session_timetable_department.name)
 
     if update_fields is None:
@@ -32,12 +32,12 @@ def add_timetable(sender, instance: Department, created, **kwargs):
 
     if "session_timetable_department" in update_fields \
             and instance.session_timetable_department.name != "":
-        delete_old_schedule(instance)
+        delete_old_schedule(instance, True)
         parsing(instance.session_timetable_department)
 
     if "session_absentia_timetable_department" in update_fields \
             and instance.session_absentia_timetable_department.name != "":
-        delete_old_schedule(instance)
+        delete_old_schedule(instance, True, 'remote')
         parsing(instance.session_absentia_timetable_department)
 
     if "basic_timetable_department" in update_fields \
@@ -45,9 +45,25 @@ def add_timetable(sender, instance: Department, created, **kwargs):
         delete_old_schedule(instance)
         parsing(instance.basic_timetable_department)
 
+    if "session_timetable_department" in update_fields \
+            and instance.session_timetable_department.name == "":
+        delete_old_schedule(instance, True)
 
-def delete_old_schedule(instance):
-    Timetable.objects.filter(department=instance).delete()
+    if "session_absentia_timetable_department" in update_fields \
+            and instance.session_absentia_timetable_department.name == "":
+        delete_old_schedule(instance, True, 'remote')
+
+    if "basic_timetable_department" in update_fields \
+            and instance.basic_timetable_department.name == "":
+        delete_old_schedule(instance)
+
+
+def delete_old_schedule(instance, session=False, type_of_training=None):
+    if type_of_training:
+        Timetable.objects.filter(department=instance, session=session,
+                                 visit=type_of_training).delete()
+    else:
+        Timetable.objects.filter(department=instance, session=session).delete()
 
 
 @transaction.atomic
@@ -56,6 +72,8 @@ def parsing(path: str):
     data = parser.parse(to_dict=True)
 
     for day in data:
-        serializer = TimetableSerializer(data=day)
+        serializer = TimetableCreateSerializer(data=day)
         serializer.is_valid(raise_exception=True)
+        print(serializer.initial_data)
+        print(serializer.validated_data)
         serializer.save()

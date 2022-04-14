@@ -60,7 +60,13 @@ class Timetable(models.Model):
     group = models.ForeignKey('groups.Group', related_name='Group', verbose_name='Группа',
                               on_delete=models.CASCADE, blank=True,
                               null=True, to_field='id')
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
     session = models.BooleanField('Сессия', default=False)
+    is_active = models.BooleanField('Активно', default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
     def __str__(self):
         return self.id

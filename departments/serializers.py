@@ -36,7 +36,9 @@ class DepartmentsSerializer(serializers.ModelSerializer):
                   'description', 'photo', 'photos', 'manager_department',
                   'teachers',
                   'count_news', 'count_specialty', 'count_groups',
-                  'count_discipline', 'count_students', 'gallery')
+                  'count_discipline', 'count_students', 'gallery', 'is_active',
+                  'original_basic_timetable_department', 'original_session_timetable_department',
+                  'original_session_absentia_timetable_department')
 
     def get_news(self, obj):
         return NewsSerializer(News.objects.filter(department=obj), many=True).data
@@ -49,3 +51,16 @@ class DepartmentsSerializer(serializers.ModelSerializer):
     def get_teachers(self, obj):
         return ProfileDetailSerializer(
             obj.profile_set.filter(user_type="teacher"), many=True).data
+
+
+class DepartmentsUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Department
+        fields = ('id', 'news', 'name', 'email', 'phone_number', 'address',
+                  'description', 'photo', 'photos', 'manager_department',
+                  'teachers',
+                  'count_news', 'count_specialty', 'count_groups',
+                  'count_discipline', 'count_students', 'gallery', 'is_active',
+                  'original_basic_timetable_department', 'original_session_timetable_department',
+                  'original_session_absentia_timetable_department')
